@@ -7,6 +7,7 @@ import feedparser  # <--- THIS IS THE MISSING PIECE
 import json
 import requests
 import spacy
+import hashlib
 from bs4 import BeautifulSoup
 
 # Load lightweight NLP model for Entity Extraction
