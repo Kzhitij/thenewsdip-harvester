@@ -46,6 +46,7 @@ def resolve_target_url(google_url):
         return google_url
 
 def generate_hashtag_variants(topic):
+    """Generates intelligent hashtag variants based on the core topic."""
     words = topic.split()
     base_tag = "".join(word.capitalize() for word in words)
     return [
@@ -58,9 +59,11 @@ def generate_hashtag_variants(topic):
 def farm_intelligence_tree(query):
     print(f"[*] Initiating Hashtag Farming for: {query}")
     
+    # URL Encode the query for Google News RSS
     encoded_query = urllib.parse.quote(query)
     rss_url = f"https://news.google.com/rss/search?q={encoded_query}&hl=en-IN&gl=IN&ceid=IN:en"
     
+    # Fetch and parse the live RSS feed
     feed = feedparser.parse(rss_url)
     
     if not feed.entries:
@@ -71,7 +74,8 @@ def farm_intelligence_tree(query):
     unique_articles = {}
     print(f"[*] Unfurling direct publisher links for '{query}'...")
     
-    for entry in feed.entries[:15]: 
+    for entry in feed.entries[:15]: # Scavenge top 15 sources
+        # Create a unique hash of the title to strictly prevent duplicate identical articles
         article_hash = hashlib.md5(entry.title.encode('utf-8')).hexdigest()
         
         if article_hash not in unique_articles:
@@ -92,33 +96,30 @@ def farm_intelligence_tree(query):
     unique_publishers = set([link["source"] for link in final_links])
     diversity_percentage = int((len(unique_publishers) / total_unique) * 100) if total_unique > 0 else 0
 
-    # 3. Build the Hashtag Matrix
+    # 3. Build the Clean Metadata Matrix
     hashtag_variants = generate_hashtag_variants(query)
-    hashtag_nodes = []
-    
-    for tag in hashtag_variants:
-        quality_score = (diversity_percentage * 0.6) + (total_unique * 4)
-        
-        hashtag_nodes.append({
-            "name": tag,
-            "unique_links_count": total_unique,
-            "diversity_score": diversity_percentage,
-            "quality_score": round(quality_score, 1),
-            "links": final_links[:5] 
-        })
+    quality_score = (diversity_percentage * 0.6) + (total_unique * 4)
 
+    # Assemble the new, flattened JSON payload struct
     intelligence_node = {
         "topic": query,
         "summary": f"Aggregated {total_unique} unique perspectives across {len(unique_publishers)} distinct publishers.",
-        "hashtags": hashtag_nodes
+        "diversity_score": diversity_percentage,
+        "unique_links_count": total_unique,
+        "quality_score": round(quality_score, 1),
+        "hashtags": hashtag_variants, # Just a list of strings now
+        "links": final_links[:7]      # Top 7 unique links displayed once
     }
     
     return intelligence_node
 
 def push_tree_to_live_worker(tree_data):
     worker_url = "https://thenewsdip-backend.thenewsdip.workers.dev/api/update"
+    
+    # Securely pulls the secret from GitHub's hidden environment variables
     secret_key = os.environ.get("API_SECRET_KEY") 
     
+    # Fallback for local testing if the environment variable isn't set on your desktop
     if not secret_key:
         print("⚠ API_SECRET_KEY missing from environment. Using local testing override...")
         secret_key = "MySuperSecretDipEngineToken123!" 
@@ -140,19 +141,23 @@ def push_tree_to_live_worker(tree_data):
     except Exception as e:
         print(f"✗ Connection error linking to Cloudflare Platform: {e}")
 
+# --- EXECUTION BLOCK ---
 if __name__ == "__main__":
     print("Harvesting and structural tokenization processing initiated...")
     
+    # You can add multiple topics to this list to farm several trends at once
     targets = ["RBI Rate Cut", "NSE F&O Regulations"]
+    
     final_payload = []
     
     for target in targets:
         farmed_data = farm_intelligence_tree(target)
         if farmed_data:
             final_payload.append(farmed_data)
-            print(f"✓ Successfully farmed intelligence tree for '{target}'. Diversity Score: {farmed_data['hashtags'][0]['diversity_score']}%")
+            print(f"✓ Successfully farmed intelligence tree for '{target}'. Diversity Score: {farmed_data['diversity_score']}%")
 
     if final_payload:
+        # Pushes the complete array to Cloudflare
         push_tree_to_live_worker(final_payload)
     else:
         print("[-] No data farmed. Sync aborted.")
