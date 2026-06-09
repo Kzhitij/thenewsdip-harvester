@@ -14,150 +14,124 @@ from bs4 import BeautifulSoup
 # Load lightweight NLP model for Entity Extraction
 nlp = spacy.load("en_core_web_sm")
 
-# Sample RSS Feeds (You can add global, national, and regional feeds here)
-FEEDS = [
-    "https://news.google.com/rss/search?q=latest&hl=en-IN&gl=IN&ceid=IN:en",
-    "https://news.google.com/rss/sections/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0ZqcEJVaTloV0Vnd09BTVM_hl=en-IN&gl=IN&ceid=IN:en"
-]
-
-def resolve_target_url(google_url):
-    """Unfurls the Google News tracking link to extract the clean, direct publisher URL."""
+def resolve_target_url(google_rss_url):
+    """
+    Follows the Google News redirect tracking link to obtain 
+    the actual, direct destination publisher URL.
+    """
     try:
-        # We use a standard browser User-Agent so Google doesn't block the extraction
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
-        response = requests.get(google_url, headers=headers, timeout=8, allow_redirects=True)
-        
-        final_url = response.url
-        
-        # If Google intercepts with a meta-refresh page, extract the hidden URL manually
-        if "news.google.com" in final_url:
-            match = re.search(r'URL=\'([^\']+)\'', response.text, re.IGNORECASE)
-            if match:
-                return match.group(1)
-            
-            # Secondary check for a hidden data attribute
-            match_two = re.search(r'data-n-v="([^"]+)"', response.text)
-            if match_two:
-                return match_two.group(1)
-                
-        return final_url
-    except Exception:
-        # Safe fallback if the unfurl fails
-        return google_url
+        response = requests.get(google_rss_url, timeout=5, headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        })
+        return response.url
+    except Exception as e:
+        print(f"[-] URL tracking resolution failed: {e}")
+        return google_rss_url
 
-def generate_hashtag_variants(topic):
-    """Generates intelligent hashtag variants based on the core topic."""
-    words = topic.split()
-    base_tag = "".join(word.capitalize() for word in words)
-    return [
-        f"{base_tag}",
-        f"{base_tag}News",
-        f"{base_tag}Update",
-        f"{words[0].capitalize()}Economy" if len(words) > 1 else f"{base_tag}Trend"
-    ]
+def extract_thumbnail_from_rss(description_html):
+    """
+    Scavenges the hidden image thumbnail embedded inside 
+    the Google News RSS description CDATA payload.
+    """
+    if not description_html:
+        return ""
+    try:
+        # Strategy A: Regex match for image tags
+        img_match = re.search(r'<img[^>]+src="([^">]+)"', description_html)
+        if img_match:
+            return img_match.group(1)
+        
+        # Strategy B: BS4 fallback parsing
+        soup = BeautifulSoup(description_html, 'html.parser')
+        img_tag = soup.find('img')
+        if img_tag and img_tag.get('src'):
+            return img_tag['src']
+    except Exception as e:
+        print(f"[-] Failed extraction of thumbnail asset: {e}")
+    return ""
 
 def farm_intelligence_tree(query):
-    print(f"[*] Initiating Hashtag Farming for: {query}")
+    """
+    Connects to the real RSS aggregator streams, pulls live data arrays,
+    extracts parameters, and structures the core Quant Engine payload.
+    """
+    print(f"[*] Launching Harvester Engine for query: {query}")
+    rss_url = f"https://news.google.com/rss/search?q={requests.utils.quote(query)}&hl=en-IN&gl=IN&ceid=IN:en"
     
-    # URL Encode the query for Google News RSS
-    encoded_query = urllib.parse.quote(query)
-    rss_url = f"https://news.google.com/rss/search?q={encoded_query}&hl=en-IN&gl=IN&ceid=IN:en"
-    
-    # Fetch and parse the live RSS feed
-    feed = feedparser.parse(rss_url)
-    
-    if not feed.entries:
-        print("[-] No live data found on Google Edge nodes.")
+    try:
+        response = requests.get(rss_url, timeout=10)
+        if response.status_code != 200:
+            print(f"[-] Aggregator returned status code: {response.status_code}")
+            return None
+        
+        # Parse XML structure natively
+        root = ET.fromstring(response.content)
+        items = root.findall('.//item')
+        
+        unique_articles = {}
+        source_distribution = {}
+        hashtag_pool = set()
+        
+        # Process top filtered inputs
+        for item in items[:15]:
+            title = item.find('title').text if item.find('title') is not None else "Untitled Intelligence"
+            link = item.find('link').text if item.find('link') is not None else ""
+            desc = item.find('description').text if item.find('description') is not None else ""
+            pub_date = item.find('pubDate').text if item.find('pubDate') is not None else "Recent"
+            
+            # Extract source authority name
+            source_tag = item.find('source')
+            source_name = source_tag.text if source_tag is not None else "Global Intelligence Network"
+            
+            if not link:
+                continue
+                
+            # Create immutable deterministic payload fingerprints
+            article_hash = hashlib.md5(title.encode('utf-8')).hexdigest()
+            
+            if article_hash not in unique_articles:
+                # Follow redirects to map original nodes
+                clean_url = resolve_target_url(link)
+                img_url = extract_thumbnail_from_rss(desc)
+                
+                # Update source weight index
+                source_distribution[source_name] = source_distribution.get(source_name, 0) + 1
+                
+                # Generate tracking tags from titles
+                words = re.findall(r'\b[A-Z][a-zA-Z]+\b', title)
+                for word in words:
+                    if len(word) > 3 and word.upper() not in ["NEWS", "INDIA", "TIMES", "LATEST"]:
+                        hashtag_pool.add(f"#{word.upper()}")
+                
+                unique_articles[article_hash] = {
+                    "title": title,
+                    "url": clean_url,
+                    "source": source_name,
+                    "published": pub_date,
+                    "image": img_url
+                }
+
+        # Calculate diversity matrices
+        total_nodes = len(unique_articles)
+        unique_sources = len(source_distribution)
+        diversity_score = int((unique_sources / total_nodes) * 10) if total_nodes > 0 else 0
+        
+        # Construct unified structural payload
+        intelligence_tree = {
+            "query": query,
+            "diversity_score": max(1, min(diversity_score, 10)),  # Clamp between 1-10
+            "hashtag_footprint": " ".join(list(hashtag_pool)[:8]),
+            "links": list(unique_articles.values())
+        }
+        
+        return intelligence_tree
+
+    except Exception as e:
+        print(f"Critical execution error in Harvester Engine: {e}")
         return None
 
-    # 1. Scavenge and Deduplicate Links
-    unique_articles = {}
-    print(f"[*] Unfurling direct publisher links for '{query}'...")
-    
-    for entry in feed.entries[:15]: # Scavenge top 15 sources
-        # Create a unique hash of the title to strictly prevent duplicate identical articles
-        article_hash = hashlib.md5(entry.title.encode('utf-8')).hexdigest()
-        
-        if article_hash not in unique_articles:
-            # Extract the clean destination URL bypassing the Google proxy
-            clean_url = resolve_target_url(entry.link)
-            
-            unique_articles[article_hash] = {
-                "title": entry.title,
-                "url": clean_url,
-                "source": entry.source.title if hasattr(entry, 'source') else "Web",
-                "published": entry.published if hasattr(entry, 'published') else "Recent"
-            }
-
-    final_links = list(unique_articles.values())
-    total_unique = len(final_links)
-    
-    # 2. Source Diversity Calculation
-    unique_publishers = set([link["source"] for link in final_links])
-    diversity_percentage = int((len(unique_publishers) / total_unique) * 100) if total_unique > 0 else 0
-
-    # 3. Build the Clean Metadata Matrix
-    hashtag_variants = generate_hashtag_variants(query)
-    quality_score = (diversity_percentage * 0.6) + (total_unique * 4)
-
-    # Assemble the new, flattened JSON payload struct
-    intelligence_node = {
-        "topic": query,
-        "summary": f"Aggregated {total_unique} unique perspectives across {len(unique_publishers)} distinct publishers.",
-        "diversity_score": diversity_percentage,
-        "unique_links_count": total_unique,
-        "quality_score": round(quality_score, 1),
-        "hashtags": hashtag_variants, # Just a list of strings now
-        "links": final_links[:7]      # Top 7 unique links displayed once
-    }
-    
-    return intelligence_node
-
-def push_tree_to_live_worker(tree_data):
-    worker_url = "https://thenewsdip-backend.thenewsdip.workers.dev/api/update"
-    
-    # Securely pulls the secret from GitHub's hidden environment variables
-    secret_key = os.environ.get("API_SECRET_KEY") 
-    
-    # Fallback for local testing if the environment variable isn't set on your desktop
-    if not secret_key:
-        print("⚠ API_SECRET_KEY missing from environment. Using local testing override...")
-        secret_key = "MySuperSecretDipEngineToken123!" 
-        
-    headers = {
-        "Authorization": f"Bearer {secret_key}",
-        "Content-Type": "application/json"
-    }
-    
-    payload = json.dumps(tree_data)
-    
-    print(f"[*] Pushing data tree to edge network at {worker_url}...")
-    try:
-        response = requests.put(worker_url, headers=headers, data=payload, timeout=15)
-        if response.status_code == 200:
-            print("✓ Live platform successfully updated and synchronized globally.")
-        else:
-            print(f"✗ Synch failed with code {response.status_code}: {response.text}")
-    except Exception as e:
-        print(f"✗ Connection error linking to Cloudflare Platform: {e}")
-
-# --- EXECUTION BLOCK ---
 if __name__ == "__main__":
-    print("Harvesting and structural tokenization processing initiated...")
-    
-    # You can add multiple topics to this list to farm several trends at once
-    targets = ["RBI Rate Cut", "NSE F&O Regulations"]
-    
-    final_payload = []
-    
-    for target in targets:
-        farmed_data = farm_intelligence_tree(target)
-        if farmed_data:
-            final_payload.append(farmed_data)
-            print(f"✓ Successfully farmed intelligence tree for '{target}'. Diversity Score: {farmed_data['diversity_score']}%")
-
-    if final_payload:
-        # Pushes the complete array to Cloudflare
-        push_tree_to_live_worker(final_payload)
-    else:
-        print("[-] No data farmed. Sync aborted.")
+    # Test framework execution
+    sample_node = farm_intelligence_tree("NSE F&O Regulations")
+    if sample_node:
+        print(json.dumps(sample_node, indent=2))
