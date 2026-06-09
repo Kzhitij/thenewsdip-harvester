@@ -22,7 +22,7 @@ jobs:
     - name: Install High-Performance NLP Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests spacy beautifulsoup4 click
+        pip install requests spacy beautifulsoup4 click feedparser
         python -m spacy download en_core_web_sm
 
     - name: Execute Live Scavenger & Cloud Sync
