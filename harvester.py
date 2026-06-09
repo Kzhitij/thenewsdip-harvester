@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from collections import Counter, defaultdict
 import urllib.parse
+import feedparser  # <--- THIS IS THE MISSING PIECE
 import json
 import requests
 import spacy
