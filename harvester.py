@@ -227,3 +227,9 @@ def push_tree_to_live_worker(tree_data):
             print(f"✗ Synch failed with code {response.status_code}: {response.text}")
     except Exception as e:
         print(f"✗ Connection error linking to Cloudflare Platform: {e}")
+
+if __name__ == "__main__":
+    print("Harvesting and structural tokenization processing initiated...")
+    data_tree = harvest_and_process() # or whatever your main scraping function is named
+    publish_outputs(data_tree)           
+    push_tree_to_live_worker(data_tree)  # <--- THIS IS THE CRITICAL LINE MISSING ON GITHUB
