@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>TheNewsDip — Dive Deep Into Every Trending Story</title>
+<meta name="description" content="TheNewsDip aggregates today's live news from national, regional and local Indian sources into one searchable tree. Real articles, real thumbnails, published today."/>
+<meta name="keywords" content="trending news India today, live news aggregator, latest news India, sensex news today, cricket news today, RBI news, budget news India"/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://www.thenewsdip.com/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="TheNewsDip — Today's Live News, Nothing Stale"/>
+<meta property="og:description" content="Search any topic. Get today's real articles from national, regional, local and social sources instantly."/>
+<meta property="og:url" content="https://www.thenewsdip.com/"/>
+<meta property="og:site_name" content="TheNewsDip"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"TheNewsDip","url":"https://www.thenewsdip.com/","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.thenewsdip.com/?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
+<style>
+:root{
+  --bg:#fff;--bg2:#f6f6f6;--bg3:#ededed;
+  --tx:#111;--tx2:#444;--tx3:#888;
+  --br:#e0e0e0;--br2:#ccc;
+  --ac:#c0000d;--acl:#fff0f0;--act:#7a0008;
+  --lk:#c0000d;
+}
+.dark{
+  --bg:#0f0f0f;--bg2:#1a1a1a;--bg3:#242424;
+  --tx:#f0f0f0;--tx2:#aaa;--tx3:#666;
+  --br:#2a2a2a;--br2:#383838;
+  --ac:#e03040;--acl:#200808;--act:#ff9090;
+  --lk:#ff6060;
+}
+/* E-INK MODE — Kindle-style paper display
+   No colours. No gradients. No shadows.
+   Pure typography on warm paper. */
+.eink{
+  --bg:#f4f0e8;--bg2:#ede9e0;--bg3:#e4dfd4;
+  --tx:#0a0a0a;--tx2:#1a1a1a;--tx3:#555;
+  --br:#b8b0a0;--br2:#a8a098;
+  --ac:#0a0a0a;--acl:#e8e4dc;--act:#0a0a0a;
+  --lk:#0a0a0a;
+  --eink-font:'Libre Baskerville',Georgia,serif;
+}
+.eink body,.eink{
+  font-family:var(--eink-font)!important;
+  -webkit-font-smoothing:auto;
+  letter-spacing:0.01em;
+}
+/* Override all colour accents in e-ink mode */
+.eink .logo em,
+.eink .hlogo em,
+.eink .logo span{color:#0a0a0a!important}
+.eink .pulse{background:#0a0a0a!important}
+.eink .tsb,.eink .hsb{background:#0a0a0a!important;color:#f4f0e8!important}
+.eink .tsb:hover,.eink .hsb:hover{background:#1a1a1a!important}
+.eink .tpill:hover{border-color:#0a0a0a!important;color:#0a0a0a!important}
+.eink .tpill .hot{background:#e4dfd4!important;color:#0a0a0a!important;border:.5px solid #a8a098!important}
+.eink .fb.on,.eink .fb:hover{border-color:#0a0a0a!important;color:#0a0a0a!important;background:#e4dfd4!important}
+.eink .bdg{border-color:#a8a098!important}
+.eink .b-nat{background:#ede9e0!important;color:#0a0a0a!important}
+.eink .b-reg{background:#ede9e0!important;color:#0a0a0a!important}
+.eink .b-loc{background:#ede9e0!important;color:#0a0a0a!important}
+.eink .b-soc{background:#ede9e0!important;color:#0a0a0a!important}
+.eink .ctitle,.eink .stitle{color:#0a0a0a!important}
+.eink .srcbadge.sb-live{background:#e4dfd4!important;color:#0a0a0a!important;border-color:#a8a098!important}
+.eink .abadge{background:#e4dfd4!important;color:#0a0a0a!important}
+.eink .soccard:hover{background:#e4dfd4!important}
+.eink .scl,.eink .brl,.eink .sul,.eink .socl{color:#0a0a0a!important}
+.eink .dmb:hover{border-color:#0a0a0a!important;color:#0a0a0a!important}
+.eink .card{border-width:1.5px!important;border-color:#b8b0a0!important}
+.eink .card:hover{border-color:#0a0a0a!important}
+.eink input{background:#ede9e0!important;color:#0a0a0a!important;border-color:#a8a098!important;font-family:var(--eink-font)!important}
+.eink input:focus{border-color:#0a0a0a!important}
+.eink .spinner{border-color:#b8b0a0!important;border-top-color:#0a0a0a!important}
+/* Remove transitions in e-ink for instant flicker-free rendering */
+.eink *{transition:none!important}
+.eink .card-img{filter:grayscale(100%) contrast(1.1)!important}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;transition:background .15s,color .15s;min-height:100vh}
+a{text-decoration:none}
+.page{display:none}.page.active{display:block}
+.hidden{display:none!important}
+
+/* LANGUAGE BAR */
+.langbar{width:100%;background:var(--bg2);border-bottom:1px solid var(--br);padding:5px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.langbar::-webkit-scrollbar{height:3px}
+.langbar::-webkit-scrollbar-thumb{background:var(--br2);border-radius:2px}
+.lang-lbl{font-size:10px;font-weight:500;color:var(--tx3);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;margin-right:2px}
+.lang-pill{font-size:11px;padding:3px 10px;border:.5px solid var(--br2);border-radius:20px;cursor:pointer;background:var(--bg);color:var(--tx2);white-space:nowrap;transition:all .1s;flex-shrink:0;font-family:'DM Sans',sans-serif}
+.lang-pill:hover{border-color:var(--ac);color:var(--ac)}
+.lang-pill.active{background:var(--ac);color:#fff;border-color:var(--ac)}
+.eink .lang-pill.active{background:#0a0a0a!important;border-color:#0a0a0a!important}
+.eink .lang-pill:hover{border-color:#0a0a0a!important;color:#0a0a0a!important}
+.eink .langbar{background:#ede9e0!important;border-color:#b8b0a0!important}
+@media(max-width:640px){.lang-lbl{display:none}}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;gap:10px;padding:10px 18px;border-bottom:1px solid var(--br);background:var(--bg);position:sticky;top:0;z-index:200}
+.logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--tx);cursor:pointer;letter-spacing:-.5px;flex-shrink:0}
+.logo em{color:var(--ac);font-style:normal}
+.tsrow{display:flex;flex:1;max-width:500px}
+.tsi{flex:1;height:34px;border:1px solid var(--br2);border-right:none;border-radius:2px 0 0 2px;padding:0 12px;font-size:13px;background:var(--bg2);color:var(--tx);outline:none;font-family:'DM Sans',sans-serif}
+.tsi:focus{border-color:var(--ac)}
+.tsi::placeholder{color:var(--tx3)}
+.tsb{height:34px;padding:0 14px;background:var(--ac);color:#fff;border:none;border-radius:0 2px 2px 0;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tsb:hover{opacity:.88}
+.dmb{background:none;border:1px solid var(--br2);border-radius:2px;padding:0 10px;height:34px;cursor:pointer;font-size:12px;color:var(--tx2);font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.dmb:hover{border-color:var(--ac);color:var(--ac)}
+
+/* HOME */
+.hero{display:flex;flex-direction:column;align-items:center;padding:72px 20px 20px;text-align:center}
+.hlogo{font-family:'Playfair Display',serif;font-size:54px;font-weight:400;letter-spacing:-2px;line-height:1;margin-bottom:10px}
+.hlogo em{color:var(--ac);font-style:normal}
+.htag{font-size:14px;font-weight:300;color:var(--tx3);letter-spacing:.07em;margin-bottom:14px}
+.hsrow{width:100%;max-width:580px;display:flex;margin-bottom:12px}
+.hsi{flex:1;height:48px;border:1.5px solid var(--br2);border-right:none;border-radius:3px 0 0 3px;padding:0 18px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);outline:none}
+.hsi:focus{border-color:var(--ac)}
+.hsi::placeholder{color:var(--tx3)}
+.hsb{height:48px;padding:0 24px;background:var(--ac);color:#fff;border:none;border-radius:0 3px 3px 0;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;gap:7px}
+.hsb:hover{opacity:.88}
+.hhint{font-size:12px;color:var(--tx3);margin-bottom:50px}
+.hhint a{color:var(--lk);cursor:pointer}.hhint a:hover{text-decoration:underline}
+.tlbl{font-size:11px;font-weight:500;color:var(--tx3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;width:100%;max-width:580px}
+.pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ac);animation:blink 1.8s infinite}
+.dot-black{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--tx);flex-shrink:0}
+.eink .dot-black{background:#0a0a0a!important}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.rbdg{font-size:11px;color:var(--tx3);background:var(--bg2);border:.5px solid var(--br);border-radius:20px;padding:2px 9px}
+.region-bar{display:flex;flex-wrap:wrap;gap:5px;width:100%;max-width:580px;margin-bottom:10px}
+.rpill{font-size:11px;padding:2px 9px;border:.5px solid var(--br2);border-radius:20px;cursor:pointer;background:var(--bg);color:var(--tx2);white-space:nowrap;transition:all .1s;flex-shrink:0}
+.rpill:hover{border-color:var(--ac);color:var(--ac)}
+.rpill.active{background:var(--ac);color:#fff;border-color:var(--ac);font-weight:500}
+.eink .rpill.active{background:#0a0a0a!important;border-color:#0a0a0a!important}
+.eink .rpill:hover{border-color:#0a0a0a!important;color:#0a0a0a!important}
+.tgrid{display:flex;flex-wrap:wrap;gap:7px;width:100%;max-width:580px;justify-content:center}
+.tpill{font-size:12px;color:var(--tx2);background:var(--bg2);border:.5px solid var(--br);border-radius:2px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .1s}
+.tpill:hover{border-color:var(--ac);color:var(--ac)}
+.tpill .num{font-size:10px;color:var(--tx3)}
+.tpill .hot{font-size:10px;padding:1px 5px;background:var(--acl);color:var(--act);border-radius:2px;font-weight:500}
+
+/* RESULTS */
+.rpage{max-width:920px;margin:0 auto;padding:14px 16px;min-height:60vh}
+.rmeta{font-size:12px;color:var(--tx3);margin-bottom:12px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.rmeta strong{color:var(--tx);font-weight:500}
+.srcbadge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:2px;display:inline-flex;align-items:center;gap:4px}
+.sb-live{background:#eaf4ea;color:#1a5a1a;border:.5px solid #60a060}
+.dark .sb-live{background:#0a1e0a;color:#70d070;border-color:#205020}
+.sb-warn{background:#fff8e0;color:#5a3a00;border:.5px solid #d4a000}
+.sb-err{background:#fff0f0;color:#7a0008;border:.5px solid #e0a0a0}
+
+.ht{font-size:11px;color:var(--act);background:var(--acl);border:.5px solid var(--ac);border-radius:2px;padding:2px 7px;font-weight:500;cursor:pointer}
+.dark .ht{color:var(--act)}.ht:hover{opacity:.72}
+.filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px}
+.fb{font-size:11px;border:1px solid var(--br2);border-radius:2px;padding:3px 10px;cursor:pointer;background:var(--bg2);color:var(--tx2);font-family:'DM Sans',sans-serif;font-weight:500}
+.fb.on,.fb:hover{border-color:var(--ac);color:var(--ac);background:var(--acl)}
+.slbl{font-size:10px;font-weight:500;color:var(--tx3);letter-spacing:.09em;text-transform:uppercase;margin:14px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--br)}
+
+/* ARTICLE CARD */
+.card{border:1px solid var(--br);border-radius:3px;margin-bottom:5px;background:var(--bg);display:flex;overflow:hidden;transition:border-color .1s;cursor:pointer}
+.card:hover{border-color:var(--ac)}
+.card-img{width:112px;height:78px;object-fit:cover;flex-shrink:0;border-right:.5px solid var(--br);background:var(--bg3)}
+.card-nimg{width:112px;height:78px;flex-shrink:0;border-right:.5px solid var(--br);background:var(--bg3);display:flex;align-items:center;justify-content:center;color:var(--tx3);font-size:22px}
+.card-body{flex:1;min-width:0;padding:9px 13px}
+.bdg{font-size:10px;font-weight:500;padding:2px 7px;border-radius:2px;display:inline-block;margin-bottom:5px}
+.b-nat{background:#fff0f0;color:#7a0008;border:.5px solid #e0a0a0}
+.dark .b-nat{background:#2a1010;color:#ff9090;border-color:#5a2020}
+.b-reg{background:#fff8e0;color:#5a3a00;border:.5px solid #d4a000}
+.dark .b-reg{background:#1e1800;color:#ffc040;border-color:#5a4000}
+.b-loc{background:#e8f4e8;color:#1a4a1a;border:.5px solid #60a060}
+.dark .b-loc{background:#0a1e0a;color:#70d070;border-color:#205020}
+.b-soc{background:#e8eeff;color:#1a2a6a;border:.5px solid #7080d0}
+.dark .b-soc{background:#0a0e2a;color:#8090ff;border-color:#2a3080}
+.ctitle{font-size:13px;font-weight:500;color:var(--lk);line-height:1.4;display:block;margin-bottom:4px}
+.ctitle:hover{text-decoration:underline}
+.ctitle i{font-size:10px;vertical-align:-1px;opacity:.55}
+.csnip{font-size:12px;color:var(--tx2);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:5px}
+.cmeta{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--tx3);flex-wrap:wrap}
+.cmeta i{font-size:12px;vertical-align:-1px;margin-right:2px}
+.abadge{font-size:10px;font-weight:500;padding:1px 6px;border-radius:2px}
+.ab-fresh{background:#eaf4ea;color:#1a5a1a}.dark .ab-fresh{background:#0a1e0a;color:#70d070}
+.ab-day{background:#e8eeff;color:#1a2a6a}.dark .ab-day{background:#0a0e2a;color:#8090ff}
+.ab-old{background:var(--bg3);color:var(--tx3)}
+
+/* SOCIAL */
+.socwrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.socsec{margin-bottom:10px}
+.socsec-lbl{font-size:10px;font-weight:500;color:var(--tx3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.socsec-lbl i{font-size:13px}
+.soccard{background:var(--bg2);border:.5px solid var(--br);border-radius:2px;padding:8px 10px;display:flex;align-items:flex-start;gap:7px;transition:background .1s;margin-bottom:4px}
+.soccard:hover{background:var(--bg3)}
+.scico{font-size:15px;flex-shrink:0;margin-top:1px}
+.ico-tw{color:#1da1f2}.ico-yt{color:#cc0000}.ico-ig{color:var(--ac)}.ico-re{color:#ff4500}
+.scbody{flex:1;min-width:0}
+.scsrc{font-size:10px;font-weight:500;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.scl{font-size:12px;color:var(--lk);display:block;line-height:1.35}
+.scl:hover{text-decoration:underline}
+.scl i{font-size:10px;vertical-align:-1px;opacity:.55}
+.scstat{font-size:10px;color:var(--tx3);margin-top:2px}
+
+/* LOADER */
+.loader{display:flex;flex-direction:column;align-items:center;padding:72px 20px;gap:14px}
+.spinner{width:30px;height:30px;border:2.5px solid var(--br2);border-top-color:var(--ac);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ltxt{font-size:13px;color:var(--tx3)}
+.lstep{font-size:11px;color:var(--tx3);opacity:.65;margin-top:2px}
+
+/* EMPTY / ERROR */
+.emptybox{padding:28px 16px;text-align:center;border:1px solid var(--br);border-radius:3px;margin:8px 0;background:var(--bg2)}
+.emptybox p{font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:10px}
+.emptybox a{color:var(--lk);font-size:12px;display:inline-block;margin:3px 6px}
+.emptybox a:hover{text-decoration:underline}
+
+/* AD */
+.adslot{border:1px dashed var(--br2);border-radius:2px;min-height:80px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--tx3);margin:14px 0;padding:10px;text-align:center}
+
+/* NOSRC */
+.nosrc{font-size:13px;color:var(--tx3);padding:14px 0;font-style:italic}
+
+/* HASHTAG INTELLIGENCE PANEL */
+.htree-wrap{max-width:920px;margin:0 auto;padding:0 16px 30px}
+.htree-hdr{display:flex;align-items:center;gap:8px;padding:10px 0 10px;border-top:1px solid var(--br);margin-top:10px}
+.htree-icon{font-size:14px;color:var(--ac)}
+.htree-title{font-size:11px;font-weight:600;color:var(--tx);text-transform:uppercase;letter-spacing:.09em}
+.htree-sub{font-size:10px;color:var(--tx3);margin-left:auto}
+.htree-loading{font-size:12px;color:var(--tx3);padding:10px 0;font-style:italic;display:flex;align-items:center;gap:6px}
+.htree-loading .spinner{width:14px;height:14px;border-width:1.5px}
+.ht-card{border:1px solid var(--br);border-radius:3px;margin-bottom:5px;background:var(--bg);overflow:hidden}
+.ht-header{display:flex;align-items:center;justify-content:space-between;padding:8px 11px;cursor:pointer;gap:8px;user-select:none}
+.ht-header:hover{background:var(--bg2)}
+.ht-left{display:flex;align-items:center;gap:7px;flex:1;min-width:0;overflow:hidden}
+.ht-rank{font-size:10px;color:var(--tx3);font-weight:600;flex-shrink:0;width:16px}
+.ht-tag{font-size:13px;font-weight:700;color:var(--ac);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dark .ht-tag{color:var(--lk)}
+.ht-signal{font-size:9px;background:var(--acl);color:var(--act);border:.5px solid var(--ac);border-radius:2px;padding:1px 5px;font-weight:700;letter-spacing:.05em;flex-shrink:0}
+.ht-scores{display:flex;align-items:center;gap:4px;flex-shrink:0;flex-wrap:nowrap}
+.ht-bdg{font-size:10px;padding:2px 6px;border:.5px solid var(--br2);border-radius:2px;color:var(--tx2);background:var(--bg2);white-space:nowrap}
+.ht-bdg-score{border-color:var(--ac);color:var(--ac);background:var(--acl);font-weight:600}
+.ht-bdg-fresh{background:#eaf4ea;color:#1a5a1a;border-color:#60a060}
+.dark .ht-bdg-fresh{background:#0a1e0a;color:#70d070;border-color:#205020}
+.ht-chev{font-size:11px;color:var(--tx3);transition:transform .15s;flex-shrink:0;margin-left:2px}
+.ht-articles{padding:0 11px 9px;border-top:1px solid var(--br);display:none}
+.ht-articles.open{display:block}
+.ht-article{display:flex;flex-direction:column;padding:6px 0;border-bottom:.5px solid var(--br);gap:2px;text-decoration:none}
+.ht-article:last-child{border-bottom:none}
+.ht-atitle{font-size:12px;color:var(--lk);line-height:1.4}
+.ht-article:hover .ht-atitle{text-decoration:underline}
+.ht-ameta{font-size:10px;color:var(--tx3)}
+.ht-more{font-size:11px;color:var(--tx3);padding:5px 0;font-style:italic}
+.ht-empty{font-size:11px;color:var(--tx3);padding:7px 0;font-style:italic}
+/* e-ink overrides for hashtag panel */
+.eink .htree-icon,.eink .ht-tag{color:#0a0a0a!important}
+.eink .ht-signal{background:#e4dfd4!important;color:#0a0a0a!important;border-color:#a8a098!important}
+.eink .ht-bdg-score{background:#e4dfd4!important;color:#0a0a0a!important;border-color:#a8a098!important}
+.eink .ht-bdg-fresh{background:#e4dfd4!important;color:#0a0a0a!important;border-color:#a8a098!important}
+.eink .ht-atitle{color:#0a0a0a!important}
+@media(max-width:640px){
+  .ht-scores{flex-wrap:wrap;gap:3px}
+  .ht-bdg{font-size:9px;padding:1px 5px}
+}
+
+/* FOOTER */
+footer{border-top:1px solid var(--br);padding:20px 18px;margin-top:40px;text-align:center}
+.flinks{display:flex;justify-content:center;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+.flinks a{font-size:11px;color:var(--tx3);cursor:pointer}.flinks a:hover{color:var(--ac)}
+.fcopy{font-size:11px;color:var(--tx3);line-height:1.7}
+
+/* BREAKING TICKER */
+.ticker-wrap{width:100%;background:var(--ac);color:#fff;overflow:hidden;padding:0;display:none}
+.ticker-inner-wrap{display:flex;align-items:stretch}
+.ticker-label{font-size:10px;font-weight:700;padding:7px 14px;white-space:nowrap;text-transform:uppercase;letter-spacing:.1em;background:rgba(0,0,0,.18);flex-shrink:0;display:flex;align-items:center;gap:5px}
+.ticker-scroll{flex:1;overflow:hidden;padding:7px 0}
+.ticker-track{display:inline-flex;white-space:nowrap;animation:ticker-scroll 55s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{font-size:12px;cursor:pointer;opacity:.92;padding:0 28px;transition:opacity .1s}
+.ticker-item:hover{opacity:1;text-decoration:underline}
+.ticker-sep{opacity:.35;padding:0 4px}
+@keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* HOMEPAGE FEED SECTION */
+.feed-section{width:100%;max-width:980px;margin:0 auto;padding:0 16px 50px}
+.feed-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 0 12px;border-bottom:1px solid var(--br);margin-bottom:14px}
+.feed-hdr-title{font-size:11px;font-weight:600;color:var(--tx3);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.feed-hdr-updated{font-size:10px;color:var(--tx3)}
+.feed-cats{display:flex;gap:0;flex-wrap:nowrap;overflow-x:auto;margin-bottom:20px;border-bottom:2px solid var(--br);scrollbar-width:none;-ms-overflow-style:none}
+.feed-cats::-webkit-scrollbar{display:none}
+.fcat{font-size:12px;font-weight:500;padding:8px 16px;cursor:pointer;border:none;background:none;color:var(--tx3);font-family:'DM Sans',sans-serif;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+.fcat:hover{color:var(--tx)}
+.fcat.active{color:var(--ac);border-bottom-color:var(--ac)}
+.feed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.feed-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.feed-grid{grid-template-columns:1fr}}
+.fcard{border:1px solid var(--br);border-radius:4px;overflow:hidden;background:var(--bg);cursor:pointer;transition:border-color .12s,box-shadow .12s;display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.fcard:hover{border-color:var(--ac);box-shadow:0 3px 14px rgba(0,0,0,.09)}
+.fcard-img-wrap{width:100%;height:170px;overflow:hidden;background:var(--bg3);flex-shrink:0;position:relative}
+.fcard-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.fcard:hover .fcard-img{transform:scale(1.04)}
+.fcard-nimg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--tx3);font-size:30px;background:var(--bg3)}
+.fcard-body{flex:1;padding:11px 13px 12px;display:flex;flex-direction:column;gap:5px}
+.fcard-cat{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--ac)}
+.eink .fcard-cat{color:#0a0a0a!important}
+.fcard-title{font-size:13px;font-weight:500;color:var(--tx);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.fcard-desc{font-size:11px;color:var(--tx2);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fcard-meta{font-size:10px;color:var(--tx3);display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.fcard-src{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60%}
+.fcard-age{flex-shrink:0}
+.feed-load-more{display:block;margin:24px auto 0;padding:10px 28px;border:1px solid var(--br2);border-radius:3px;background:var(--bg2);color:var(--tx2);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s}
+.feed-load-more:hover{border-color:var(--ac);color:var(--ac);background:var(--acl)}
+.feed-empty{text-align:center;padding:48px 20px;color:var(--tx3);font-size:13px}
+.feed-spinner{display:flex;flex-direction:column;align-items:center;padding:48px 20px;gap:12px;color:var(--tx3);font-size:13px}
+
+/* E-ink overrides for feed */
+.eink .fcard{border-color:#b8b0a0!important}
+.eink .fcard:hover{border-color:#0a0a0a!important}
+.eink .fcard-img{filter:grayscale(100%) contrast(1.1)}
+.eink .ticker-wrap{background:#0a0a0a!important}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .hlogo{font-size:38px}.hero{padding:48px 16px 36px}
+  .socwrap{grid-template-columns:1fr}
+  .topbar{flex-wrap:wrap}.tsrow{order:2;max-width:100%;flex:1 1 100%}
+  .dmb span{display:none}
+  .card-img,.card-nimg{width:80px;height:60px}
+  .fcard-img-wrap{height:130px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar hidden" id="topbar" style="display:none">
+  <div class="logo" onclick="showHome()" role="button" tabindex="0">the<em>news</em>dip</div>
+  <div class="tsrow">
+    <input class="tsi" id="tq" type="search" placeholder="search topic, event, person..." autocomplete="off" aria-label="Search"/>
+    <button class="tsb" onclick="doSearch(document.getElementById('tq').value)">
+      <i class="ti ti-search" aria-hidden="true"></i> Dip in
+    </button>
+  </div>
+  <div style="display:flex;align-items:center;gap:5px;margin-left:auto">
+    <button class="dmb" onclick="toggleLightDark()" id="ld-btn" aria-label="Toggle light/dark mode">
+      <i class="ti ti-moon" id="dmi" aria-hidden="true"></i><span id="dml">Dark</span>
+    </button>
+    <button class="dmb" onclick="toggleEink()" id="eink-btn" aria-label="Toggle e-ink display">
+      <i class="ti ti-book" aria-hidden="true"></i><span id="einkl">E-ink</span>
+    </button>
+  </div>
+</header>
+
+<!-- LANGUAGE BAR — shown on all pages -->
+<div class="langbar" id="langbar" role="navigation" aria-label="Translate page">
+  <span class="lang-lbl">Translate</span>
+  <div class="lang-pill active" onclick="setLang('en','English',this)" data-lang="en">English</div>
+  <div class="lang-pill" onclick="setLang('hi','Hindi',this)" data-lang="hi">हिन्दी</div>
+  <div class="lang-pill" onclick="setLang('bn','Bengali',this)" data-lang="bn">বাংলা</div>
+  <div class="lang-pill" onclick="setLang('mr','Marathi',this)" data-lang="mr">मराठी</div>
+  <div class="lang-pill" onclick="setLang('te','Telugu',this)" data-lang="te">తెలుగు</div>
+  <div class="lang-pill" onclick="setLang('ta','Tamil',this)" data-lang="ta">தமிழ்</div>
+  <div class="lang-pill" onclick="setLang('gu','Gujarati',this)" data-lang="gu">ગુજરાતી</div>
+  <div class="lang-pill" onclick="setLang('ur','Urdu',this)" data-lang="ur">اردو</div>
+  <div class="lang-pill" onclick="setLang('kn','Kannada',this)" data-lang="kn">ಕನ್ನಡ</div>
+  <div class="lang-pill" onclick="setLang('ml','Malayalam',this)" data-lang="ml">മലയാളം</div>
+  <div class="lang-pill" onclick="setLang('pa','Punjabi',this)" data-lang="pa">ਪੰਜਾਬੀ</div>
+</div>
+
+<!-- BREAKING NEWS TICKER — sits flush below the language bar, visible on home page -->
+<div class="ticker-wrap" id="ticker-wrap">
+  <div class="ticker-inner-wrap">
+    <span class="ticker-label"><span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;animation:blink 1.4s infinite"></span> Breaking</span>
+    <div class="ticker-scroll"><div class="ticker-track" id="ticker-track"></div></div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="page active" id="pg-home">
+  <section class="hero">
+    <h1 class="hlogo">the<em>news</em>dip</h1>
+    <p class="htag">What's brewing — dip in!</p>
+    <div style="display:flex;gap:8px;justify-content:center;margin-bottom:28px">
+      <button class="dmb" onclick="toggleLightDark()" aria-label="Toggle light/dark mode">
+        <i class="ti ti-moon" id="dmi2" aria-hidden="true"></i><span id="dml2">Dark</span>
+      </button>
+      <button class="dmb" onclick="toggleEink()" aria-label="Toggle e-ink display">
+        <i class="ti ti-book" aria-hidden="true"></i><span id="einkl2">E-ink</span>
+      </button>
+    </div>
+    <div class="hsrow" role="search">
+      <input class="hsi" id="hq" type="search" placeholder="search a topic, event, or person..." autocomplete="off" aria-label="Search news"/>
+      <button class="hsb" onclick="doSearch(document.getElementById('hq').value)">
+        <i class="ti ti-search" aria-hidden="true"></i> Dip in
+      </button>
+    </div>
+    <p class="hhint" id="hhint">
+      Try <a onclick="doSearch('RBI rate cut')">RBI rate cut</a>,
+      <a onclick="doSearch('Sensex rally today')">Sensex rally today</a>,
+      <a onclick="doSearch('India budget 2026')">India budget 2026</a>,
+      <a onclick="doSearch('India vs England cricket')">India vs England cricket</a>
+    </p>
+    <div class="tlbl">
+      <span class="dot-black" aria-hidden="true"></span>Trending now
+      <span id="trend-src" style="font-size:10px;color:var(--tx3);font-weight:400;text-transform:none;letter-spacing:0;margin-left:auto"></span>
+    </div>
+    <div class="region-bar" id="region-bar">
+      <span class="rpill active" data-geo="IN" onclick="setRegion('IN',this)">India</span>
+      <span class="rpill" data-geo="US" onclick="setRegion('US',this)">US</span>
+      <span class="rpill" data-geo="GB" onclick="setRegion('GB',this)">UK</span>
+      <span class="rpill" data-geo="CA" onclick="setRegion('CA',this)">Canada</span>
+      <span class="rpill" data-geo="AU" onclick="setRegion('AU',this)">Australia</span>
+      <span class="rpill" data-geo="DE" onclick="setRegion('DE',this)">Europe</span>
+      <span class="rpill" data-geo="BR" onclick="setRegion('BR',this)">S. America</span>
+      <span class="rpill" data-geo="RU" onclick="setRegion('RU',this)">Russia</span>
+      <span class="rpill" data-geo="SG" onclick="setRegion('SG',this)">SE Asia</span>
+    </div>
+    <div class="tgrid" id="tgrid" role="list"></div>
+  </section>
+  <!-- HOMEPAGE FEED -->
+  <div class="feed-section" id="feed-section">
+    <div class="feed-hdr">
+      <span class="feed-hdr-title">
+        <span class="dot-black" aria-hidden="true"></span>
+        Latest Stories
+      </span>
+      <span class="feed-hdr-updated" id="feed-updated"></span>
+    </div>
+    <div class="feed-cats" id="feed-cats" role="tablist">
+      <button class="fcat active" data-cat="all"           onclick="setFeedCat('all',this)">All</button>
+      <button class="fcat"        data-cat="india"         onclick="setFeedCat('india',this)">India</button>
+      <button class="fcat"        data-cat="world"         onclick="setFeedCat('world',this)">World</button>
+      <button class="fcat"        data-cat="business"      onclick="setFeedCat('business',this)">Business</button>
+      <button class="fcat"        data-cat="sports"        onclick="setFeedCat('sports',this)">Sports</button>
+      <button class="fcat"        data-cat="tech"          onclick="setFeedCat('tech',this)">Tech</button>
+      <button class="fcat"        data-cat="entertainment" onclick="setFeedCat('entertainment',this)">Entertainment</button>
+    </div>
+    <div class="feed-grid" id="feed-grid">
+      <div class="feed-spinner" style="grid-column:1/-1">
+        <div class="spinner"></div>
+        Loading latest stories…
+      </div>
+    </div>
+    <button class="feed-load-more" id="feed-load-more" style="display:none" onclick="loadMoreFeed()">
+      Load more stories
+    </button>
+  </div>
+
+  <footer>
+    <div class="flinks">
+      <a onclick="showPage('pg-about')">About</a>
+      <a onclick="showPage('pg-privacy')">Privacy Policy</a>
+      <a href="mailto:hello@thenewsdip.com">Contact</a>
+    </div>
+    <p class="fcopy">&copy; 2026 TheNewsDip &nbsp;&middot;&nbsp; News aggregator — we link to original sources only &nbsp;&middot;&nbsp; All content &copy; respective publishers</p>
+  </footer>
+</div>
+
+<!-- RESULTS -->
+<div class="page" id="pg-results">
+  <div class="rpage">
+    <div id="rloader" class="loader hidden" style="display:none">
+      <div class="spinner"></div>
+      <p class="ltxt" id="ltxt">Searching for today's articles...</p>
+      <p class="lstep" id="lstep">Connecting to news sources</p>
+    </div>
+    <div id="rcontent" class="hidden" style="display:none"></div>
+  </div>
+  <!-- HASHTAG INTELLIGENCE PANEL -->
+  <div class="htree-wrap" id="htree-wrap" style="display:none">
+    <div class="htree-hdr">
+      <i class="ti ti-hash htree-icon" aria-hidden="true"></i>
+      <span class="htree-title">Hashtag Intelligence</span>
+      <span class="htree-sub" id="htree-status"></span>
+    </div>
+    <div id="htree-grid"></div>
+  </div>
+
+  <footer style="max-width:920px;margin:0 auto">
+    <div class="flinks">
+      <a onclick="showHome()">Home</a>
+      <a onclick="showPage('pg-about')">About</a>
+      <a onclick="showPage('pg-privacy')">Privacy</a>
+      <a href="mailto:hello@thenewsdip.com">Contact</a>
+    </div>
+    <p class="fcopy">&copy; 2026 TheNewsDip &nbsp;&middot;&nbsp; Headlines &amp; links only — click to read at source &nbsp;&middot;&nbsp; All content &copy; respective publishers</p>
+  </footer>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="pg-about">
+  <div style="max-width:700px;margin:0 auto;padding:40px 20px 60px">
+    <p style="margin-bottom:20px"><a style="color:var(--lk);cursor:pointer;font-size:13px" onclick="showHome()">← Home</a></p>
+    <h1 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:400;margin-bottom:6px">the<em style="color:var(--ac);font-style:normal">news</em>dip</h1>
+    <p style="font-size:12px;color:var(--tx3);margin-bottom:24px">India's real-time news aggregation engine</p>
+    <p style="font-size:14px;line-height:1.75;color:var(--tx2);margin-bottom:14px">TheNewsDip fetches live articles published today from national, regional and local Indian sources. Every result is timestamped — you always know exactly how old each article is.</p>
+    <p style="font-size:14px;line-height:1.75;color:var(--tx2);margin-bottom:14px">We display headlines and snippets only. Every click goes to the original publisher. We are a news index, not a publisher — we do not reproduce article content.</p>
+    <p style="font-size:14px;color:var(--tx2)">Partnerships: <a href="mailto:hello@thenewsdip.com" style="color:var(--lk)">hello@thenewsdip.com</a></p>
+  </div>
+</div>
+
+<!-- PRIVACY -->
+<div class="page" id="pg-privacy">
+  <div style="max-width:700px;margin:0 auto;padding:40px 20px 60px">
+    <p style="margin-bottom:20px"><a style="color:var(--lk);cursor:pointer;font-size:13px" onclick="showHome()">← Home</a></p>
+    <h1 style="font-size:22px;font-weight:500;margin-bottom:6px">Privacy Policy</h1>
+    <p style="font-size:12px;color:var(--tx3);margin-bottom:24px">Last updated: 8 June 2026</p>
+    <p style="font-size:14px;line-height:1.75;color:var(--tx2);margin-bottom:12px">TheNewsDip does not collect personally identifiable information. Server logs may record IP and browser type for analytics only.</p>
+    <p style="font-size:14px;line-height:1.75;color:var(--tx2);margin-bottom:12px"><strong>Advertising:</strong> We use Google AdSense. Google may use cookies to personalise ads. Opt out at <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color:var(--lk)">adssettings.google.com</a>.</p>
+    <p style="font-size:14px;line-height:1.75;color:var(--tx2)"><strong>Content:</strong> All articles displayed are from third-party publishers. We show headlines and links only. All article copyright belongs to original publishers. Contact: <a href="mailto:privacy@thenewsdip.com" style="color:var(--lk)">privacy@thenewsdip.com</a></p>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ═══════════════════════════════════════════════
+   LANGUAGE — instant client-side translation
+   UI strings translated directly in JS.
+   Article titles/descriptions: re-fetched from
+   news APIs with language parameter when possible.
+   Same instant toggle as dark/light mode.
+═══════════════════════════════════════════════ */
+let currentLang = localStorage.getItem('tnd-lang') || 'en';
+
+/* UI string translations for all 15 languages */
+const UI_STRINGS = {
+  en: {
+    placeholder_home: 'search a topic, event, or person...',
+    placeholder_top: 'search topic, event, person...',
+    dip_in: 'Dip in',
+    trending_now: 'TRENDING NOW',
+    tagline: 'What\u2019s brewing \u2014 dip in!',
+    national: 'National',
+    regional: 'Regional',
+    local: 'Local',
+    all: 'All',
+    translate_lbl: 'Translate',
+    loading: 'Searching for today\u2019s articles...',
+    no_results: 'No articles found',
+    about: 'About',
+    privacy: 'Privacy Policy',
+    contact: 'Contact',
+    dark: 'Dark',
+    light: 'Light',
+    eink: 'E-ink',
+  },
+  hi: {
+    placeholder_home: '\u0915\u094b\u0908 \u0935\u093f\u0937\u092f, \u0918\u091f\u0928\u093e \u092f\u093e \u0935\u094d\u092f\u0915\u094d\u0924\u093f \u0916\u094b\u091c\u0947\u0902...',
+    placeholder_top: '\u0935\u093f\u0937\u092f, \u0918\u091f\u0928\u093e, \u0935\u094d\u092f\u0915\u094d\u0924\u093f \u0916\u094b\u091c\u0947\u0902...',
+    dip_in: '\u0916\u094b\u091c\u0947\u0902',
+    trending_now: '\u0905\u092d\u0940 \u091f\u094d\u0930\u0947\u0902\u0921\u093f\u0902\u0917',
+    tagline: '\u0915\u0947\u0935\u0932 \u0906\u091c \u0915\u0940 \u0916\u092c\u0930 \u2014 \u092a\u0941\u0930\u093e\u0928\u093e \u0915\u0941\u091b \u0928\u0939\u0940\u0902',
+    national: '\u0930\u093e\u0937\u094d\u091f\u094d\u0930\u0940\u092f',
+    regional: '\u0915\u094d\u0937\u0947\u0924\u094d\u0930\u0940\u092f',
+    local: '\u0938\u094d\u0925\u093e\u0928\u0940\u092f',
+    all: '\u0938\u092d\u0940',
+    translate_lbl: '\u092d\u093e\u0937\u093e',
+    loading: '\u0906\u091c \u0915\u0947 \u0932\u0947\u0916 \u0916\u094b\u091c\u0947 \u091c\u093e \u0930\u0939\u0947 \u0939\u0948\u0902...',
+    no_results: '\u0915\u094b\u0908 \u0932\u0947\u0916 \u0928\u0939\u0940\u0902 \u092e\u093f\u0932\u093e',
+    about: '\u092a\u0930\u093f\u091a\u092f',
+    privacy: '\u0917\u094b\u092a\u0928\u0940\u092f\u0924\u093e',
+    contact: '\u0938\u0902\u092a\u0930\u094d\u0915',
+    dark: '\u0921\u093e\u0930\u094d\u0915',
+    light: '\u0932\u093e\u0907\u091f',
+    eink: '\u0908-\u0907\u0902\u0915',
+  },
+  bn: {
+    placeholder_home: '\u098f\u0995\u099f\u09bf \u09ac\u09bf\u09b7\u09af\u09bc, \u0998\u099f\u09a8\u09be \u09ac\u09be \u09ac\u09cd\u09af\u0995\u09cd\u09a4\u09bf \u0996\u09c1\u0981\u099c\u09c1\u09a8...',
+    placeholder_top: '\u09ac\u09bf\u09b7\u09af\u09bc, \u0998\u099f\u09a8\u09be, \u09ac\u09cd\u09af\u0995\u09cd\u09a4\u09bf \u0996\u09c1\u0981\u099c\u09c1\u09a8...',
+    dip_in: '\u0996\u09c1\u0981\u099c\u09c1\u09a8',
+    trending_now: '\u098f\u0996\u09a8 \u099f\u09cd\u09b0\u09c7\u09a8\u09cd\u09a1\u09bf\u0982',
+    tagline: '\u09b6\u09c1\u09a7\u09c1 \u0986\u099c\u09c7\u09b0 \u0996\u09ac\u09b0 \u2014 \u09aa\u09c1\u09b0\u09a8\u09cb \u0995\u09bf\u099b\u09c1 \u09a8\u09c7\u0987',
+    national: '\u099c\u09be\u09a4\u09c0\u09af\u09bc',
+    regional: '\u0986\u099e\u09cd\u099a\u09b2\u09bf\u0995',
+    local: '\u09b8\u09cd\u09a5\u09be\u09a8\u09c0\u09af\u09bc',
+    all: '\u09b8\u09ac',
+    translate_lbl: '\u09ad\u09be\u09b7\u09be',
+    loading: '\u0986\u099c\u0995\u09c7\u09b0 \u09a8\u09bf\u09ac\u09a8\u09cd\u09a7 \u0996\u09cb\u0981\u099c\u09be \u09b9\u099a\u09cd\u099b\u09c7...',
+    no_results: '\u0995\u09cb\u09a8\u09cb \u09a8\u09bf\u09ac\u09a8\u09cd\u09a7 \u09aa\u09be\u0993\u09af\u09bc\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf',
+    about: '\u09aa\u09b0\u09bf\u099a\u09bf\u09a4\u09bf',
+    privacy: '\u0997\u09cb\u09aa\u09a8\u09c0\u09af\u09bc\u09a4\u09be',
+    contact: '\u09af\u09cb\u0997\u09be\u09af\u09cb\u0997',
+    dark: '\u09a1\u09be\u09b0\u09cd\u0995',
+    light: '\u09b2\u09be\u0987\u099f',
+    eink: '\u0987-\u0987\u0982\u0995',
+  },
+  mr: {
+    placeholder_home: '\u0935\u093f\u0937\u092f, \u0918\u091f\u0928\u093e \u0915\u093f\u0902\u0935\u093e \u0935\u094d\u092f\u0915\u094d\u0924\u0940 \u0936\u094b\u0927\u093e...',
+    placeholder_top: '\u0935\u093f\u0937\u092f, \u0918\u091f\u0928\u093e, \u0935\u094d\u092f\u0915\u094d\u0924\u0940 \u0936\u094b\u0927\u093e...',
+    dip_in: '\u0936\u094b\u0927\u093e',
+    trending_now: '\u0906\u0924\u094d\u0924\u093e \u091f\u094d\u0930\u0947\u0902\u0921\u093f\u0902\u0917',
+    tagline: '\u0915\u0947\u0935\u0933 \u0906\u091c\u091a\u094d\u092f\u093e \u092c\u093e\u0924\u092e\u094d\u092f\u093e \u2014 \u091c\u0941\u0928\u0947 \u0915\u093e\u0939\u0940\u0939\u0940 \u0928\u093e\u0939\u0940',
+    national: '\u0930\u093e\u0937\u094d\u091f\u094d\u0930\u0940\u092f',
+    regional: '\u092a\u094d\u0930\u093e\u0926\u0947\u0936\u093f\u0915',
+    local: '\u0938\u094d\u0925\u093e\u0928\u093f\u0915',
+    all: '\u0938\u0930\u094d\u0935',
+    translate_lbl: '\u092d\u093e\u0937\u093e',
+    loading: '\u0906\u091c\u091a\u0947 \u0932\u0947\u0916 \u0936\u094b\u0927\u0924 \u0906\u0939\u0947...',
+    no_results: '\u0915\u094b\u0923\u0924\u0947\u0939\u0940 \u0932\u0947\u0916 \u0938\u093e\u092a\u0921\u0932\u0947 \u0928\u093e\u0939\u0940\u0924',
+    about: '\u092a\u0930\u093f\u091a\u092f',
+    privacy: '\u0917\u094b\u092a\u0928\u0940\u092f\u0924\u093e',
+    contact: '\u0938\u0902\u092a\u0930\u094d\u0915',
+    dark: '\u0921\u093e\u0930\u094d\u0915',
+    light: '\u0932\u093e\u0907\u091f',
+    eink: '\u0908-\u0907\u0902\u0915',
+  },
+  te: {
+    placeholder_home: '\u0c05\u0c02\u0c36\u0c02, \u0c38\u0c02\u0c18\u0c1f\u0c28 \u0c32\u0c47\u0c26\u0c3e \u0c35\u0c4d\u0c2f\u0c15\u0c4d\u0c24\u0c3f\u0c28\u0c3f \u0c35\u0c46\u0c24\u0c15\u0c02\u0c21\u0c3f...',
+    placeholder_top: '\u0c05\u0c02\u0c36\u0c02, \u0c38\u0c02\u0c18\u0c1f\u0c28 \u0c35\u0c46\u0c24\u0c15\u0c02\u0c21\u0c3f...',
+    dip_in: '\u0c35\u0c46\u0c24\u0c15\u0c02\u0c21\u0c3f',
+    trending_now: '\u0c07\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c41 \u0c1f\u0c4d\u0c30\u0c46\u0c02\u0c21\u0c3f\u0c02\u0c17\u0c4d',
+    tagline: '\u0c28\u0c47\u0c1f\u0c3f \u0c35\u0c3e\u0c30\u0c4d\u0c24\u0c32\u0c41 \u0c2e\u0c3e\u0c24\u0c4d\u0c30\u0c2e\u0c47 \u2014 \u0c2a\u0c3e\u0c24\u0c26\u0c47\u0c26\u0c40 \u0c32\u0c47\u0c26\u0c41',
+    national: '\u0c1c\u0c3e\u0c24\u0c40\u0c2f',
+    regional: '\u0c2a\u0c4d\u0c30\u0c3e\u0c02\u0c24\u0c40\u0c2f',
+    local: '\u0c38\u0c4d\u0c25\u0c3e\u0c28\u0c3f\u0c15',
+    all: '\u0c05\u0c28\u0c4d\u0c28\u0c40',
+    translate_lbl: '\u0c2d\u0c3e\u0c37',
+    loading: '\u0c28\u0c47\u0c1f\u0c3f \u0c35\u0c4d\u0c2f\u0c3e\u0c38\u0c3e\u0c32\u0c41 \u0c35\u0c46\u0c24\u0c41\u0c15\u0c41\u0c24\u0c4b\u0c02\u0c26\u0c3f...',
+    no_results: '\u0c35\u0c4d\u0c2f\u0c3e\u0c38\u0c3e\u0c32\u0c41 \u0c15\u0c28\u0c41\u0c17\u0c4a\u0c28\u0c2c\u0c21\u0c32\u0c47\u0c26\u0c41',
+    about: '\u0c17\u0c41\u0c30\u0c3f\u0c02\u0c1a\u0c3f',
+    privacy: '\u0c17\u0c4b\u0c2a\u0c4d\u0c2f\u0c24',
+    contact: '\u0c38\u0c02\u0c2a\u0c4d\u0c30\u0c26\u0c3f\u0c02\u0c1a\u0c02\u0c21\u0c3f',
+    dark: '\u0c21\u0c3e\u0c30\u0c4d\u0c15\u0c4d',
+    light: '\u0c32\u0c48\u0c1f\u0c4d',
+    eink: '\u0c07-\u0c07\u0c02\u0c15\u0c4d',
+  },
+  ta: {
+    placeholder_home: '\u0ba4\u0bb2\u0bc8\u0baa\u0bcd\u0baa\u0bc1, \u0ba8\u0bbf\u0b95\u0bb4\u0bcd\u0bb5\u0bc1 \u0b85\u0bb2\u0bcd\u0bb2\u0ba4\u0bc1 \u0ba8\u0baa\u0bb0\u0bc8 \u0ba4\u0bc7\u0b9f\u0bc1\u0b99\u0bcd\u0b95\u0bb3\u0bcd...',
+    placeholder_top: '\u0ba4\u0bb2\u0bc8\u0baa\u0bcd\u0baa\u0bc1, \u0ba8\u0bbf\u0b95\u0bb4\u0bcd\u0bb5\u0bc1 \u0ba4\u0bc7\u0b9f\u0bc1\u0b99\u0bcd\u0b95\u0bb3\u0bcd...',
+    dip_in: '\u0ba4\u0bc7\u0b9f\u0bc1',
+    trending_now: '\u0b87\u0baa\u0bcd\u0baa\u0bcb\u0ba4\u0bc1 \u0b9f\u0bbf\u0bb0\u0bc6\u0ba3\u0bcd\u0b9f\u0bbf\u0b99\u0bcd',
+    tagline: '\u0b87\u0ba9\u0bcd\u0bb1\u0bc8\u0baf \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf\u0b95\u0bb3\u0bcd \u0bae\u0b9f\u0bcd\u0b9f\u0bc1\u0bae\u0bc7 \u2014 \u0baa\u0bb4\u0baf\u0ba4\u0bc1 \u0b8e\u0ba4\u0bc1\u0bb5\u0bc1\u0bae\u0bbf\u0bb2\u0bcd\u0bb2\u0bc8',
+    national: '\u0ba4\u0bc7\u0b9a\u0bbf\u0baf',
+    regional: '\u0bae\u0ba3\u0bcd\u0b9f\u0bb2',
+    local: '\u0b89\u0bb3\u0bcd\u0bb3\u0bc2\u0bb0\u0bcd',
+    all: '\u0b85\u0ba9\u0bc8\u0ba4\u0bcd\u0ba4\u0bc1\u0bae\u0bcd',
+    translate_lbl: '\u0bae\u0bca\u0bb4\u0bbf',
+    loading: '\u0b87\u0ba9\u0bcd\u0bb1\u0bc8\u0baf \u0b95\u0b9f\u0bcd\u0b9f\u0bc1\u0bb0\u0bc8\u0b95\u0bb3\u0bc8 \u0ba4\u0bc7\u0b9f\u0bc1\u0b95\u0bbf\u0bb1\u0ba4\u0bc1...',
+    no_results: '\u0b95\u0b9f\u0bcd\u0b9f\u0bc1\u0bb0\u0bc8\u0b95\u0bb3\u0bcd \u0b95\u0bbf\u0b9f\u0bc8\u0b95\u0bcd\u0b95\u0bb5\u0bbf\u0bb2\u0bcd\u0bb2\u0bc8',
+    about: '\u0baa\u0bb1\u0bcd\u0bb1\u0bbf',
+    privacy: '\u0ba4\u0ba9\u0bbf\u0baf\u0bc1\u0bb0\u0bbf\u0bae\u0bc8',
+    contact: '\u0ba4\u0bca\u0b9f\u0bb0\u0bcd\u0baa\u0bc1',
+    dark: '\u0b9f\u0bbe\u0bb0\u0bcd\u0b95\u0bcd',
+    light: '\u0bb2\u0bc8\u0b9f\u0bcd',
+    eink: '\u0b87-\u0b87\u0b99\u0bcd\u0b95\u0bcd',
+  },
+  gu: {
+    placeholder_home: '\u0ab5\u0abf\u0ab7\u0aaf, \u0a98\u0abe\u0a9f\u0aa8\u0abe \u0a85\u0aa5\u0ab5\u0abe \u0ab5\u0acd\u0aaf\u0a95\u0acd\u0aa4\u0abf \u0ab6\u0acb\u0aa7\u0acb...',
+    placeholder_top: '\u0ab5\u0abf\u0ab7\u0aaf, \u0a98\u0abe\u0a9f\u0aa8\u0abe, \u0ab5\u0acd\u0aaf\u0a95\u0acd\u0aa4\u0abf \u0ab6\u0acb\u0aa7\u0acb...',
+    dip_in: '\u0ab6\u0acb\u0aa7\u0acb',
+    trending_now: '\u0ab9\u0aae\u0aa3\u0abe\u0a82 \u0a9f\u0acd\u0ab0\u0ac7\u0aa8\u0acd\u0aa1\u0abf\u0a82\u0a97',
+    tagline: '\u0aab\u0a95\u0acd\u0aa4 \u0a86\u0a9c\u0aa8\u0abe \u0ab8\u0aae\u0abe\u0a9a\u0abe\u0ab0 \u2014 \u0a9c\u0ac2\u0aa8\u0ac1\u0a82 \u0a95\u0a82\u0a88 \u0aa8\u0ab9\u0ac0\u0a82',
+    national: '\u0ab0\u0abe\u0ab7\u0acd\u0a9f\u0acd\u0ab0\u0ac0\u0aaf',
+    regional: '\u0aaa\u0acd\u0ab0\u0abe\u0aa6\u0ac7\u0ab6\u0abf\u0a95',
+    local: '\u0ab8\u0acd\u0aa5\u0abe\u0aa8\u0abf\u0a95',
+    all: '\u0aac\u0aa7\u0abe',
+    translate_lbl: '\u0aad\u0abe\u0ab7\u0abe',
+    loading: '\u0a86\u0a9c\u0aa8\u0abe \u0ab2\u0ac7\u0aa8\u0abe \u0ab6\u0acb\u0aa7\u0ac0 \u0ab0\u0ab9\u0acd\u0aaf\u0abe \u0a9b\u0ac7...',
+    no_results: '\u0a95\u0acb\u0a88 \u0ab2\u0ac7\u0aa8\u0abe \u0aae\u0ab3\u0acd\u0aaf\u0abe \u0aa8\u0ab9\u0ac0\u0a82',
+    about: '\u0ab5\u0abf\u0ab6\u0ac7',
+    privacy: '\u0a97\u0acb\u0aaa\u0aa8\u0ac0\u0aaf\u0aa4\u0abe',
+    contact: '\u0ab8\u0a82\u0aaa\u0ab0\u0acd\u0a95',
+    dark: '\u0aa1\u0abe\u0ab0\u0acd\u0a95',
+    light: '\u0ab2\u0abe\u0a87\u0a9f',
+    eink: '\u0a88-\u0a87\u0a82\u0a95',
+  },
+  ur: {
+    placeholder_home: '\u0645\u0648\u0636\u0648\u0639\u060c \u0648\u0627\u0642\u0639\u06c1 \u06cc\u0627 \u0634\u062e\u0635 \u062a\u0644\u0627\u0634 \u06a9\u0631\u06cc\u06ba...',
+    placeholder_top: '\u0645\u0648\u0636\u0648\u0639\u060c \u0648\u0627\u0642\u0639\u06c1 \u062a\u0644\u0627\u0634 \u06a9\u0631\u06cc\u06ba...',
+    dip_in: '\u062a\u0644\u0627\u0634 \u06a9\u0631\u06cc\u06ba',
+    trending_now: '\u0627\u0628\u06be\u06cc \u0679\u0631\u06cc\u0646\u0688\u0646\u06af',
+    tagline: '\u0635\u0631\u0641 \u0622\u062c \u06a9\u06cc \u062e\u0628\u0631\u06cc\u06ba \u2014 \u06a9\u0686\u06be \u067e\u0631\u0627\u0646\u0627 \u0646\u06c1\u06cc\u06ba',
+    national: '\u0642\u0648\u0645\u06cc',
+    regional: '\u0639\u0644\u0627\u0642\u0627\u0626\u06cc',
+    local: '\u0645\u0642\u0627\u0645\u06cc',
+    all: '\u0633\u0628',
+    translate_lbl: '\u0632\u0628\u0627\u0646',
+    loading: '\u0622\u062c \u06a9\u06d2 \u0645\u0636\u0627\u0645\u06cc\u0646 \u062a\u0644\u0627\u0634 \u06c1\u0648 \u0631\u06c1\u06d2 \u06c1\u06cc\u06ba...',
+    no_results: '\u06a9\u0648\u0626\u06cc \u0645\u0636\u0645\u0648\u0646 \u0646\u06c1\u06cc\u06ba \u0645\u0644\u0627',
+    about: '\u0628\u0627\u0631\u06d2 \u0645\u06cc\u06ba',
+    privacy: '\u0631\u0627\u0632\u062f\u0627\u0631\u06cc',
+    contact: '\u0631\u0627\u0628\u0637\u06c1',
+    dark: '\u0688\u0627\u0631\u06a9',
+    light: '\u0644\u0627\u0626\u0679',
+    eink: '\u0627\u06cc-\u0627\u0646\u06a9',
+  },
+  kn: {
+    placeholder_home: '\u0cb5\u0cbf\u0cb7\u0caf, \u0c98\u0c9f\u0ca8\u0cc6 \u0c85\u0ca5\u0cb5\u0cbe \u0cb5\u0ccd\u0caf\u0c95\u0ccd\u0ca4\u0cbf\u0caf\u0ca8\u0ccd\u0ca8\u0cc1 \u0cb9\u0cc1\u0ca1\u0cc1\u0c95\u0cbf...',
+    placeholder_top: '\u0cb5\u0cbf\u0cb7\u0caf, \u0c98\u0c9f\u0ca8\u0cc6 \u0cb9\u0cc1\u0ca1\u0cc1\u0c95\u0cbf...',
+    dip_in: '\u0cb9\u0cc1\u0ca1\u0cc1\u0c95\u0cbf',
+    trending_now: '\u0c88\u0c97 \u0c9f\u0ccd\u0cb0\u0cc6\u0c82\u0ca1\u0cbf\u0c82\u0c97\u0ccd',
+    tagline: '\u0c87\u0c82\u0ca6\u0cbf\u0ca8 \u0cb8\u0cc1\u0ca6\u0ccd\u0ca6\u0cbf \u0cae\u0cbe\u0ca4\u0ccd\u0cb0 \u2014 \u0cb9\u0cb3\u0cc6\u0caf\u0cc7\u0ca8\u0cc2 \u0c87\u0cb2\u0ccd\u0cb2',
+    national: '\u0cb0\u0cbe\u0cb7\u0ccd\u0c9f\u0ccd\u0cb0\u0cc0\u0caf',
+    regional: '\u0caa\u0ccd\u0cb0\u0cbe\u0ca6\u0cc7\u0cb6\u0cbf\u0c95',
+    local: '\u0cb8\u0ccd\u0ca5\u0cb3\u0cc0\u0caf',
+    all: '\u0c8e\u0cb2\u0ccd\u0cb2\u0cbe',
+    translate_lbl: '\u0cad\u0cbe\u0cb7\u0cc6',
+    loading: '\u0c87\u0c82\u0ca6\u0cbf\u0ca8 \u0cb2\u0cc7\u0c96\u0ca8\u0c97\u0cb3\u0ca8\u0ccd\u0ca8\u0cc1 \u0cb9\u0cc1\u0ca1\u0cc1\u0c95\u0cb2\u0cbe\u0c97\u0cc1\u0ca4\u0ccd\u0ca4\u0cbf\u0ca6\u0cc6...',
+    no_results: '\u0caf\u0cbe\u0cb5\u0cc1\u0ca6\u0cc7 \u0cb2\u0cc7\u0c96\u0ca8\u0c97\u0cb3\u0cc1 \u0c95\u0c82\u0ca1\u0cc1\u0cac\u0c82\u0ca6\u0cbf\u0cb2\u0ccd\u0cb2',
+    about: '\u0cac\u0c97\u0ccd\u0c97\u0cc6',
+    privacy: '\u0c97\u0ccc\u0caa\u0ccd\u0caf\u0ca4\u0cc6',
+    contact: '\u0cb8\u0c82\u0caa\u0cb0\u0ccd\u0c95',
+    dark: '\u0ca1\u0cbe\u0cb0\u0ccd\u0c95\u0ccd',
+    light: '\u0cb2\u0cc8\u0c9f\u0ccd',
+    eink: '\u0c87-\u0c87\u0c82\u0c95\u0ccd',
+  },
+  ml: {
+    placeholder_home: '\u0d12\u0d30\u0d41 \u0d35\u0d3f\u0d37\u0d2f\u0d02, \u0d38\u0d02\u0d2d\u0d35\u0d02 \u0d05\u0d32\u0d4d\u0d32\u0d46\u0d19\u0d4d\u0d15\u0d3f\u0d7d \u0d35\u0d4d\u0d2f\u0d15\u0d4d\u0d24\u0d3f\u0d2f\u0d46 \u0d24\u0d3f\u0d30\u0d2f\u0d41\u0d15...',
+    placeholder_top: '\u0d35\u0d3f\u0d37\u0d2f\u0d02, \u0d38\u0d02\u0d2d\u0d35\u0d02 \u0d24\u0d3f\u0d30\u0d2f\u0d41\u0d15...',
+    dip_in: '\u0d24\u0d3f\u0d30\u0d2f\u0d41\u0d15',
+    trending_now: '\u0d07\u0d2a\u0d4d\u0d2a\u0d4b\u0d7e \u0d1f\u0d4d\u0d30\u0d46\u0d28\u0d4d\u0d21\u0d3f\u0d19\u0d4d',
+    tagline: '\u0d07\u0d28\u0d4d\u0d28\u0d24\u0d4d\u0d24\u0d46 \u0d35\u0d3e\u0d7c\u0d24\u0d4d\u0d24 \u0d2e\u0d3e\u0d24\u0d4d\u0d30\u0d02 \u2014 \u0d2a\u0d34\u0d2f\u0d24\u0d4a\u0d28\u0d4d\u0d28\u0d41\u0d2e\u0d3f\u0d32\u0d4d\u0d32',
+    national: '\u0d26\u0d47\u0d36\u0d40\u0d2f',
+    regional: '\u0d2a\u0d4d\u0d30\u0d3e\u0d26\u0d47\u0d36\u0d3f\u0d15',
+    local: '\u0d24\u0d26\u0d4d\u0d26\u0d47\u0d36',
+    all: '\u0d0e\u0d32\u0d4d\u0d32\u0d3e\u0d02',
+    translate_lbl: '\u0d2d\u0d3e\u0d37',
+    loading: '\u0d07\u0d28\u0d4d\u0d28\u0d24\u0d4d\u0d24\u0d46 \u0d32\u0d47\u0d16\u0d28\u0d19\u0d4d\u0d19\u0d7e \u0d24\u0d3f\u0d30\u0d2f\u0d41\u0d28\u0d4d\u0d28\u0d41...',
+    no_results: '\u0d32\u0d47\u0d16\u0d28\u0d19\u0d4d\u0d19\u0d7e \u0d15\u0d23\u0d4d\u0d1f\u0d46\u0d24\u0d4d\u0d24\u0d3f\u0d2f\u0d3f\u0d32\u0d4d\u0d32',
+    about: '\u0d15\u0d41\u0d31\u0d3f\u0d1a\u0d4d\u0d1a\u0d4d',
+    privacy: '\u0d38\u0d4d\u0d35\u0d15\u0d3e\u0d30\u0d4d\u0d2f\u0d24',
+    contact: '\u0d2c\u0d28\u0d4d\u0d27\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d15',
+    dark: '\u0d21\u0d3e\u0d7c\u0d15\u0d4d\u0d15\u0d4d',
+    light: '\u0d32\u0d48\u0d31\u0d4d\u0d31\u0d4d',
+    eink: '\u0d07-\u0d07\u0d19\u0d4d\u0d15\u0d4d',
+  },
+  pa: {
+    placeholder_home: '\u0a35\u0a3f\u0a38\u0a3c\u0a3e, \u0a18\u0a1f\u0a28\u0a3e \u0a1c\u0a3e\u0a02 \u0a35\u0a3f\u0a05\u0a15\u0a24\u0a40 \u0a16\u0a4b\u0a1c\u0a4b...',
+    placeholder_top: '\u0a35\u0a3f\u0a38\u0a3c\u0a3e, \u0a18\u0a1f\u0a28\u0a3e \u0a16\u0a4b\u0a1c\u0a4b...',
+    dip_in: '\u0a16\u0a4b\u0a1c\u0a4b',
+    trending_now: '\u0a39\u0a41\u0a23 \u0a1f\u0a4d\u0a30\u0a48\u0a02\u0a21\u0a3f\u0a70\u0a17',
+    tagline: '\u0a38\u0a3f\u0a30\u0a2b\u0a3c \u0a05\u0a71\u0a1c \u0a26\u0a40\u0a06\u0a02 \u0a16\u0a3c\u0a2c\u0a30\u0a3e\u0a02 \u2014 \u0a15\u0a4b\u0a08 \u0a2a\u0a41\u0a30\u0a3e\u0a23\u0a40 \u0a17\u0a71\u0a32 \u0a28\u0a39\u0a40\u0a02',
+    national: '\u0a30\u0a3e\u0a38\u0a3c\u0a1f\u0a30\u0a40',
+    regional: '\u0a16\u0a47\u0a24\u0a30\u0a40',
+    local: '\u0a38\u0a25\u0a3e\u0a28\u0a15',
+    all: '\u0a38\u0a3e\u0a30\u0a47',
+    translate_lbl: '\u0a2d\u0a3e\u0a38\u0a3c\u0a3e',
+    loading: '\u0a05\u0a71\u0a1c \u0a26\u0a47 \u0a32\u0a47\u0a16 \u0a32\u0a71\u0a2d\u0a47 \u0a1c\u0a3e \u0a30\u0a39\u0a47 \u0a39\u0a28...',
+    no_results: '\u0a15\u0a4b\u0a08 \u0a32\u0a47\u0a16 \u0a28\u0a39\u0a40\u0a02 \u0a2e\u0a3f\u0a32\u0a3f\u0a06',
+    about: '\u0a2c\u0a3e\u0a30\u0a47',
+    privacy: '\u0a17\u0a4b\u0a2a\u0a28\u0a40\u0a5e\u0a24\u0a3e',
+    contact: '\u0a38\u0a70\u0a2a\u0a30\u0a15',
+    dark: '\u0a21\u0a3e\u0a30\u0a15',
+    light: '\u0a32\u0a3e\u0a08\u0a1f',
+    eink: '\u0a08-\u0a07\u0a70\u0a15',
+  },
+};
+
+function t(key){ return (UI_STRINGS[currentLang]||UI_STRINGS.en)[key] || UI_STRINGS.en[key] || key; }
+
+function setLang(code, name, el){
+  currentLang = code;
+  localStorage.setItem('tnd-lang', code);
+
+  document.querySelectorAll('.lang-pill').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll(`[data-lang="${code}"]`).forEach(p => p.classList.add('active'));
+
+  // Language switch = instant UI translation only.
+  // Article content stays as-is — no re-fetch. The language pills are an
+  // interface translator, not a content filter.
+  applyLang();
+}
+
+function applyLang(){
+  // Placeholders
+  const hq = document.getElementById('hq');
+  if(hq) hq.placeholder = t('placeholder_home');
+  const tq = document.getElementById('tq');
+  if(tq) tq.placeholder = t('placeholder_top');
+
+  // Dip in buttons
+  document.querySelectorAll('.hsb, .tsb').forEach(btn => {
+    btn.innerHTML = `<i class="ti ti-search" aria-hidden="true"></i> ${t('dip_in')}`;
+  });
+
+  // Tagline
+  const ht = document.querySelector('.htag');
+  if(ht) ht.textContent = t('tagline');
+
+  // Trending label
+  const tlbl = document.querySelector('.tlbl');
+  if(tlbl){
+    const dot = tlbl.querySelector('.dot-black');
+    tlbl.childNodes.forEach(n => { if(n.nodeType===3) n.textContent=''; });
+    if(dot) dot.after(document.createTextNode(' '+t('trending_now')+' '));
+  }
+
+  // Translate label in langbar
+  document.querySelectorAll('.lang-lbl').forEach(el => el.textContent = t('translate_lbl'));
+
+  // Dark/Light/Eink button labels — preserve current state
+  ['dml','dml2'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = isDark ? t('light') : t('dark');
+  });
+  ['einkl','einkl2'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = isEink ? t('eink')+' ✓' : t('eink');
+  });
+
+  // Set page direction for RTL languages
+  document.documentElement.dir = currentLang === 'ur' ? 'rtl' : 'ltr';
+
+  // Translate all article cards on the currently active page
+  translateVisibleTitles(currentLang);
+}
+
+/* ═══════════════════════════════════════════════
+   API KEYS
+═══════════════════════════════════════════════ */
+const KEYS = {
+  currents:   'OiXougYpAi1xXKsNAb8kuJxpGovUUNU0vHm7j1b_clDUEESd',
+  gnews:      '4e38ab3ea46c799d442badbb2870a7e2',
+  newsdata:   'pub_433bafdff87c4a6cba44e569a7a42109'
+};
+
+/* ═══════════════════════════════════════════════
+   MYMEMORY ARTICLE TRANSLATION
+   Translates visible article titles on-the-fly
+   when user switches language. Free API, no key.
+   Falls back silently if quota exceeded.
+   Supported: hi bn mr te ta gu ml kn pa ur
+═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   ARTICLE TRANSLATION ENGINE
+   Translates all visible article titles + snippets
+   using MyMemory free API (no key required).
+   Supported: hi bn mr te ta gu ml kn pa ur
+═══════════════════════════════════════════════ */
+const MYMEMORY_LANGS = new Set(['hi','bn','mr','te','ta','gu','ml','kn','pa','ur']);
+const _txCache = new Map(); // "text::lang" → translated text
+let   _txGen   = 0;         // incremented on every new translation call; stale batches abort
+
+// MyMemory requires locale-qualified codes for several Indian languages.
+const _MM_CODE = {
+  hi:'hi', bn:'bn', mr:'mr',
+  te:'te-IN', ta:'ta-IN', gu:'gu-IN',
+  kn:'kn-IN', ml:'ml-IN', pa:'pa-IN', ur:'ur-IN',
+};
+
+// Tracks last known state of the MyMemory API so we can surface errors in the UI
+let _txApiStatus = 'ok'; // 'ok' | 'quota' | 'error'
+
+// Single translation request. Uses manual AbortController for broad browser support.
+async function _mmTranslate(text, lang){
+  if(!text || !text.trim()) return text;
+  const key = text.substring(0,60)+'::'+lang;
+  if(_txCache.has(key)) return _txCache.get(key);
+  try{
+    const mmCode = _MM_CODE[lang] || lang;
+    const url = 'https://api.mymemory.translated.net/get'
+      + `?q=${encodeURIComponent(text.substring(0,450))}`
+      + `&langpair=en|${mmCode}`
+      + `&de=hello@thenewsdip.com`;
+    const ctl   = new AbortController();
+    const timer = setTimeout(()=>ctl.abort(), 7000);
+    let r;
+    try{
+      r = await fetch(url, {signal: ctl.signal});
+    }catch(fetchErr){
+      clearTimeout(timer);
+      // Network error or abort — log it so devs can see it in the console
+      console.warn('[TheNewsDip] Translation fetch failed:', fetchErr.message);
+      _txApiStatus = 'error';
+      return text;
+    }
+    clearTimeout(timer);
+    if(!r.ok){
+      console.warn('[TheNewsDip] Translation API HTTP', r.status, '— quota may be exceeded');
+      _txApiStatus = r.status === 429 || r.status === 403 ? 'quota' : 'error';
+      return text;
+    }
+    const d   = await r.json();
+    // MyMemory sets quotaFinished:true when the daily limit is reached
+    if(d.quotaFinished){
+      console.warn('[TheNewsDip] MyMemory daily quota finished');
+      _txApiStatus = 'quota';
+      return text;
+    }
+    const out = d.responseData?.translatedText;
+    if(!out || out === text) return text;
+    _txApiStatus = 'ok';
+    _txCache.set(key, out);
+    return out;
+  }catch(e){
+    console.warn('[TheNewsDip] Translation error:', e.message);
+    _txApiStatus = 'error';
+    return text;
+  }
+}
+
+// Write text into a .ctitle element appropriately:
+// • feed-card titles (.fcard-title) are plain divs inside an <a> → textContent only
+// • search-result titles are <a> elements → innerHTML with external-link icon
+function _setTitle(el, text){
+  if(el.classList.contains('fcard-title')){
+    el.textContent = text;
+  } else {
+    el.innerHTML = esc(text)+' <i class="ti ti-external-link" aria-hidden="true"></i>';
+  }
+}
+
+// Collect all translatable elements inside the currently ACTIVE page only.
+// This ensures feed-card elements are found when pg-home is active and
+// search-result elements are found when pg-results is active — one query works for both.
+function _visibleArticleEls(sel){
+  const active = document.querySelector('.page.active');
+  return active ? [...active.querySelectorAll(sel)] : [];
+}
+
+// Show a brief toast/banner message in the UI
+function _txToast(msg, type='info'){
+  let toast = document.getElementById('tx-toast');
+  if(!toast){
+    toast = document.createElement('div');
+    toast.id = 'tx-toast';
+    toast.style.cssText = 'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);'
+      + 'padding:8px 18px;border-radius:20px;font-size:12px;font-weight:500;z-index:9999;'
+      + 'pointer-events:none;transition:opacity .4s;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.18)';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.background = type === 'error' ? '#c0392b' : type === 'warn' ? '#e67e22' : '#222';
+  toast.style.color = '#fff';
+  toast.style.opacity = '1';
+  clearTimeout(toast._hide);
+  toast._hide = setTimeout(()=>{ toast.style.opacity='0'; }, 4000);
+}
+
+// Translate (or restore to English) every article title + snippet on the active page.
+// Guarded by _txGen — each new call claims a generation; any awaiting batch from an
+// older call detects the mismatch and exits, so rapid language switches don't pile up.
+async function translateVisibleTitles(lang){
+  const myGen = ++_txGen;
+
+  // Immediately restore English baseline on all visible translatable elements
+  _visibleArticleEls('.ctitle[data-en]').forEach(el=>{ _setTitle(el, el.dataset.en); });
+  _visibleArticleEls('.csnip[data-en]').forEach( el=>{ el.textContent = el.dataset.en; });
+
+  if(lang === 'en' || !MYMEMORY_LANGS.has(lang)) return;
+
+  // Show "Translating…" hint in the feed header when on the home page
+  const upd      = document.getElementById('feed-updated');
+  const savedUpd = upd ? upd.textContent : '';
+  const onHome   = document.getElementById('pg-home')?.classList.contains('active');
+  if(upd && onHome) upd.textContent = 'Translating…';
+
+  // Reset status before this run — we'll check it after
+  _txApiStatus = 'ok';
+
+  // Translate titles (batch of 6 concurrent requests)
+  const titleEls = _visibleArticleEls('.ctitle[data-en]');
+  let translated  = 0;
+  for(let i=0; i<titleEls.length; i+=6){
+    if(_txGen !== myGen){ if(upd) upd.textContent=savedUpd; return; }
+    const batch = titleEls.slice(i, i+6);
+    const txs   = await Promise.all(batch.map(el=>_mmTranslate(el.dataset.en, lang)));
+    if(_txGen !== myGen){ if(upd) upd.textContent=savedUpd; return; }
+    batch.forEach((el,j)=>{
+      if(txs[j] !== el.dataset.en) translated++;
+      _setTitle(el, txs[j]);
+    });
+  }
+
+  // Translate descriptions (batch of 4 concurrent requests)
+  const descEls = _visibleArticleEls('.csnip[data-en]');
+  for(let i=0; i<descEls.length; i+=4){
+    if(_txGen !== myGen){ if(upd) upd.textContent=savedUpd; return; }
+    const batch = descEls.slice(i, i+4);
+    const txs   = await Promise.all(batch.map(el=>_mmTranslate(el.dataset.en, lang)));
+    if(_txGen !== myGen){ if(upd) upd.textContent=savedUpd; return; }
+    batch.forEach((el,j)=>{ el.textContent = txs[j]; });
+  }
+
+  if(upd) upd.textContent = savedUpd;
+
+  // Surface any API failures in the UI so the user knows what happened
+  if(titleEls.length > 0 && translated === 0){
+    if(_txApiStatus === 'quota'){
+      _txToast('Translation quota reached for today — try again tomorrow', 'warn');
+    } else if(_txApiStatus === 'error'){
+      _txToast('Translation service unavailable — please try again in a moment', 'error');
+    } else {
+      // API responded 200 but returned same text — could be unsupported language pair
+      _txToast('Translation returned no results for this language', 'warn');
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   LANGUAGE → NEWS-API CODE MAP
+   null = API doesn't support this language;
+   cascade will fall back to English articles
+   with native UI strings applied.
+═══════════════════════════════════════════════ */
+const LANG_API = {
+  en:  { gnews:'en',  currents:'en', newsdata:'en'  },
+  hi:  { gnews:'hi',  currents:'hi', newsdata:'hi'  },
+  bn:  { gnews:null,  currents:'bn', newsdata:'bn'  },
+  mr:  { gnews:'mr',  currents:'mr', newsdata:'mr'  },
+  te:  { gnews:'te',  currents:'te', newsdata:'te'  },
+  ta:  { gnews:'ta',  currents:'ta', newsdata:'ta'  },
+  gu:  { gnews:null,  currents:'gu', newsdata:'gu'  },
+  ur:  { gnews:null,  currents:'ur', newsdata:'ur'  },
+  kn:  { gnews:null,  currents:'kn', newsdata:'kn'  },
+  ml:  { gnews:'ml',  currents:'ml', newsdata:'ml'  },
+  pa:  { gnews:null,  currents:'pa', newsdata:'pa'  },
+};
+
+/* ═══════════════════════════════════════════════
+   SOURCE MAP — 60+ Indian domains classified
+═══════════════════════════════════════════════ */
+const SRCMAP = {
+  // National
+  'economictimes.indiatimes.com':{n:'Economic Times',r:'nat'},
+  'moneycontrol.com':            {n:'Moneycontrol',   r:'nat'},
+  'ndtv.com':                    {n:'NDTV',           r:'nat'},
+  'ndtvprofit.com':              {n:'NDTV Profit',    r:'nat'},
+  'ndtv.com':                    {n:'NDTV',           r:'nat'},
+  'hindustantimes.com':          {n:'Hindustan Times',r:'nat'},
+  'livemint.com':                {n:'LiveMint',       r:'nat'},
+  'business-standard.com':       {n:'Business Std',  r:'nat'},
+  'businesstoday.in':            {n:'Business Today', r:'nat'},
+  'indiatimes.com':              {n:'India Times',    r:'nat'},
+  'thewire.in':                  {n:'The Wire',       r:'nat'},
+  'scroll.in':                   {n:'Scroll',         r:'nat'},
+  'theprint.in':                 {n:'The Print',      r:'nat'},
+  'firstpost.com':               {n:'Firstpost',      r:'nat'},
+  'news18.com':                  {n:'News18',         r:'nat'},
+  'zeenews.india.com':           {n:'Zee News',       r:'nat'},
+  'indiatoday.in':               {n:'India Today',    r:'nat'},
+  'outlookindia.com':            {n:'Outlook India',  r:'nat'},
+  'thehindu.com':                {n:'The Hindu',      r:'nat'}, // national reach
+  'indianexpress.com':           {n:'Indian Express', r:'nat'},
+  'wionews.com':                 {n:'WION',           r:'nat'},
+  'financialexpress.com':        {n:'Financial Express',r:'nat'},
+  'cnbctv18.com':                {n:'CNBC TV18',      r:'nat'},
+  'bloombergquint.com':          {n:'Bloomberg Quint',r:'nat'},
+  'bqprime.com':                 {n:'BQ Prime',       r:'nat'},
+  // Regional
+  'deccanherald.com':            {n:'Deccan Herald',  r:'reg'},
+  'tribuneindia.com':            {n:'Tribune India',  r:'reg'},
+  'maharashtratimes.com':        {n:'Mah. Times',     r:'reg'},
+  'loksatta.com':                {n:'Loksatta',       r:'reg'},
+  'lokmat.com':                  {n:'Lokmat',         r:'reg'},
+  'dinamalar.com':               {n:'Dinamalar',      r:'reg'},
+  'dinamani.com':                {n:'Dinamani',       r:'reg'},
+  'eenadu.net':                  {n:'Eenadu',         r:'reg'},
+  'anandabazar.com':             {n:'Ananda Bazar',   r:'reg'},
+  'punjabkesari.in':             {n:'Punjab Kesari',  r:'reg'},
+  'jagran.com':                  {n:'Dainik Jagran',  r:'reg'},
+  'bhaskar.com':                 {n:'Dainik Bhaskar', r:'reg'},
+  'patrika.com':                 {n:'Patrika',        r:'reg'},
+  'navbharattimes.indiatimes.com':{n:'Navbharat Times',r:'reg'},
+  'mathrubhumi.com':             {n:'Mathrubhumi',    r:'reg'},
+  'manoramaonline.com':          {n:'Manorama',       r:'reg'},
+  'themorungexpress.com':        {n:'Morung Express', r:'reg'},
+  'morungexpress.com':           {n:'Morung Express', r:'reg'},
+  'telanganatoday.com':          {n:'Telangana Today',r:'reg'},
+  'deccanchronicle.com':         {n:'Deccan Chronicle',r:'reg'},
+  'newindianexpress.com':        {n:'New Indian Express',r:'reg'},
+  'vijaykarnataka.com':          {n:'Vijay Karnataka',r:'reg'},
+  'sakshi.com':                  {n:'Sakshi',         r:'reg'},
+  'samayam.com':                 {n:'Samayam',        r:'reg'},
+  // Local
+  'timesofindia.indiatimes.com': {n:'Times of India', r:'loc'},
+  'mid-day.com':                 {n:'Mid-Day',        r:'loc'},
+  'mumbaimirror.indiatimes.com': {n:'Mumbai Mirror',  r:'loc'},
+  'punemirror.in':               {n:'Pune Mirror',    r:'loc'},
+  'ahmedabadmirror.indiatimes.com':{n:'Amd Mirror',   r:'loc'},
+  'bangaloremirror.indiatimes.com':{n:'Blr Mirror',   r:'loc'},
+  'chennaionline.com':           {n:'Chennai Online', r:'loc'},
+  'delhincr.com':                {n:'Delhi NCR',      r:'loc'},
+};
+
+function getDomain(url){
+  try{ return new URL(url).hostname.replace(/^www\./,'').toLowerCase(); }
+  catch(e){ return ''; }
+}
+
+function classify(domainStr){
+  if(!domainStr) return {n:'News Source',r:'nat'};
+  const d = domainStr.replace(/^www\./,'').toLowerCase();
+  if(SRCMAP[d]) return SRCMAP[d];
+  // Pattern fallback — broad Indian outlet detection
+  if(/ndtv|moneycontrol|livemint|businesstoday|firstpost|news18|zeenews|indiatoday|theprint|scroll|thewire|outlookindia|wion|cnbctv18|bloomberg/.test(d))
+    return {n:d, r:'nat'};
+  if(/deccan|tribune|maharashtra|loksatta|lokmat|dinamal|dinamani|eenadu|ananda|kesari|jagran|bhaskar|patrika|mathrubhumi|manorama|telangana|newindian|vijaykarnataka|sakshi|samayam/.test(d))
+    return {n:d, r:'reg'};
+  if(/mirror|mid-day|punemirror|chennaionline/.test(d))
+    return {n:d, r:'loc'};
+  return {n:d, r:'nat'};
+}
+
+const BADGE = {nat:{label:'National',cls:'b-nat'}, reg:{label:'Regional',cls:'b-reg'}, loc:{label:'Local',cls:'b-loc'}};
+
+/* ═══════════════════════════════════════════════
+   DATE HELPERS
+═══════════════════════════════════════════════ */
+function ageBadge(ds){
+  try{
+    const ms = Date.now()-new Date(ds).getTime();
+    if(isNaN(ms)) return {t:'Recent',c:'ab-fresh'};
+    const m=Math.floor(ms/60000), h=Math.floor(m/60), d=Math.floor(h/24);
+    if(m<60)  return {t:`${m}m ago`,  c:'ab-fresh'};
+    if(h<24)  return {t:`${h}h ago`,  c:'ab-fresh'};
+    if(d===1) return {t:'Yesterday',  c:'ab-day'};
+    if(d<=4)  return {t:`${d}d ago`,  c:'ab-day'};
+    return          {t:`${d}d ago`,   c:'ab-old'};
+  }catch(e){ return {t:'Recent',c:'ab-fresh'}; }
+}
+
+function isFresh(ds, days=2){
+  // Default: 48 hours. Pass days=7 explicitly only for fallback scenarios.
+  try{ return (Date.now()-new Date(ds).getTime()) < days*86400000; }
+  catch(e){ return true; }
+}
+
+/* Relevance filter v2 — bigram + weighted scoring.
+   "Modi US visit" will NOT match Myanmar/Indonesia articles.
+   "RBI rate cut" WILL match "RBI repo rate unchanged" (bigram "rbi rate").
+   "Chandrayaan 4" will NOT match "Chandigarh University". */
+function isRelevant(art, q){
+  const haystack = (art.title + ' ' + (art.desc||'')).toLowerCase();
+  const ql = q.toLowerCase().trim();
+  // 1. Exact phrase match
+  if(haystack.includes(ql)) return true;
+  // Significant words: keep >= 2 chars (preserves "US","AI","PM")
+  const words = ql.split(/\s+/).filter(w => w.length >= 2);
+  if(!words.length) return true;
+  // 2. Bigram match — any consecutive 2-word sub-phrase present
+  for(let i = 0; i < words.length - 1; i++){
+    if(haystack.includes(words[i] + ' ' + words[i+1])) return true;
+  }
+  // 3. Weighted word count
+  const matched = words.filter(w => haystack.includes(w)).length;
+  const need = words.length <= 2 ? words.length
+             : words.length === 3 ? 2
+             : Math.round(words.length * 0.70);
+  return matched >= need;
+}
+
+/* ═══════════════════════════════════════════════
+   API FETCHERS — normalised shape
+   Shape: {title, desc, url, image, pubDate, sourceName, domain}
+═══════════════════════════════════════════════ */
+
+// Region → 2-letter country code used by GNews and NewsData
+const _COUNTRY = {IN:'in',US:'us',GB:'gb',CA:'ca',AU:'au',DE:'de',BR:'br',RU:'ru',SG:'sg'};
+
+async function fetchGNews(q, days=2, lang='en', region='IN'){
+  const country = _COUNTRY[region] || 'in';
+  const url = `https://gnews.io/api/v4/search`
+    + `?q=${encodeURIComponent(q)}`
+    + `&lang=en&country=${country}&max=10&sortby=publishedAt`
+    + `&apikey=${KEYS.gnews}`;
+  const r = await fetch(url, {signal:AbortSignal.timeout(7000)});
+  if(!r.ok) throw new Error(`GNews HTTP ${r.status}`);
+  const d = await r.json();
+  if(d.errors) throw new Error(d.errors.join(', '));
+  return (d.articles||[]).filter(a=>isFresh(a.publishedAt,days)).map(a=>({
+    title:      a.title,
+    desc:       a.description||'',
+    url:        a.url,
+    image:      a.image||null,
+    pubDate:    a.publishedAt,
+    sourceName: a.source?.name||getDomain(a.url),
+    domain:     getDomain(a.url)
+  }));
+}
+
+async function fetchCurrents(q, days=2, lang='en', region='IN'){
+  // Currents: keep country filter for India; drop it for international (global index)
+  const countryParam = region==='IN' ? '&country=IN' : '';
+  const url = `https://api.currentsapi.services/v1/search`
+    + `?keywords=${encodeURIComponent(q)}`
+    + countryParam
+    + `&language=en`
+    + `&apiKey=${KEYS.currents}`;
+  const r = await fetch(url, {signal:AbortSignal.timeout(7000)});
+  if(!r.ok) throw new Error(`Currents HTTP ${r.status}`);
+  const d = await r.json();
+  if(d.status!=='ok') throw new Error(d.message||'Currents error');
+  return (d.news||[]).filter(a=>isFresh(a.published,days)).map(a=>{
+    const auth = a.author||'';
+    const dom  = getDomain(a.url);
+    const isPersonName = auth.includes(' ')&&auth.split(' ').length<=3&&auth.length<30;
+    const src  = isPersonName ? (dom||auth) : (auth||dom);
+    return {
+      title:      a.title,
+      desc:       a.description||'',
+      url:        a.url,
+      image:      a.image&&a.image!=='None'?a.image:null,
+      pubDate:    a.published,
+      sourceName: src,
+      domain:     dom
+    };
+  });
+}
+
+async function fetchNewsData(q, days=2, lang='en', region='IN'){
+  const country = _COUNTRY[region] || 'in';
+  const url = `https://newsdata.io/api/1/latest`
+    + `?apikey=${KEYS.newsdata}`
+    + `&q=${encodeURIComponent(q)}`
+    + `&country=${country}&language=en`;
+  const r = await fetch(url, {signal:AbortSignal.timeout(7000)});
+  if(!r.ok) throw new Error(`NewsData HTTP ${r.status}`);
+  const d = await r.json();
+  if(d.status!=='success') throw new Error(d.message||'NewsData error');
+  return (d.results||[]).filter(a=>isFresh(a.pubDate,days)).map(a=>({
+    title:      a.title,
+    desc:       a.description||a.content||'',
+    url:        a.link,
+    image:      a.image_url||null,
+    pubDate:    a.pubDate,
+    sourceName: a.source_name||a.source_id||getDomain(a.link),
+    domain:     getDomain(a.link)
+  }));
+}
+
+async function fetchGuardian(q, days=2){
+  // Guardian open API — free "test" key, 12 req/s, 5 000/day
+  const from = new Date(Date.now() - days*86400000).toISOString().split('T')[0];
+  const url  = `https://content.guardianapis.com/search`
+    + `?q=${encodeURIComponent(q)}`
+    + `&from-date=${from}`
+    + `&show-fields=thumbnail,trailText`
+    + `&order-by=newest&page-size=10`
+    + `&api-key=test`;
+  const r = await fetch(url, {signal:AbortSignal.timeout(7000)});
+  if(!r.ok) throw new Error(`Guardian HTTP ${r.status}`);
+  const d = await r.json();
+  const results = d?.response?.results || [];
+  return results.map(a=>({
+    title:      a.webTitle || '',
+    desc:       a.fields?.trailText || '',
+    url:        a.webUrl,
+    image:      a.fields?.thumbnail || null,
+    pubDate:    a.webPublicationDate,
+    sourceName: 'The Guardian',
+    domain:     'theguardian.com',
+  }));
+}
+
+/* ═══════════════════════════════════════════════
+   CASCADE SEARCH
+   Fires GNews + Currents + NewsData + Guardian in parallel.
+   Each result set is filtered through isRelevant()
+   before being accepted — no garbage articles.
+═══════════════════════════════════════════════ */
+// Merge results from multiple API responses, deduplicating by title
+function _mergeResults(settled, q, seenKeys=new Set()){
+  const articles=[], sources=[], errors=[];
+  for(const {name, res} of settled){
+    if(res.status==='fulfilled'){
+      for(const a of res.value.filter(a=>isRelevant(a,q))){
+        const k=a.title.toLowerCase().replace(/[^a-z0-9]/g,'').substring(0,35);
+        if(!seenKeys.has(k)){ seenKeys.add(k); articles.push(a); }
+      }
+      if(res.value.length>0 && !sources.includes(name)) sources.push(name);
+    } else {
+      errors.push(`${name}: ${res.reason?.message||'error'}`);
+    }
+  }
+  return {articles, sources, errors, seenKeys};
+}
+
+async function cascadeSearch(q, setStep, lang='en', region='IN'){
+  setStep('Searching live sources...');
+
+  // Fire all 4 APIs simultaneously — worst-case 7s total
+  const [g,c,n,gd] = await Promise.allSettled([
+    fetchGNews(q,2,lang,region),
+    fetchCurrents(q,2,lang,region),
+    fetchNewsData(q,2,lang,region),
+    fetchGuardian(q,2),
+  ]);
+  const r1 = _mergeResults([
+    {name:'GNews',res:g},{name:'Currents',res:c},
+    {name:'NewsData',res:n},{name:'Guardian',res:gd},
+  ], q);
+
+  if(r1.articles.length >= 3){
+    return {articles:r1.articles, source:r1.sources.join('+'), errors:r1.errors};
+  }
+
+  // Widen to 7-day window if still thin
+  setStep('Widening search to past week...');
+  const [g7,c7,n7,gd7] = await Promise.allSettled([
+    fetchGNews(q,7,lang,region),
+    fetchCurrents(q,7,lang,region),
+    fetchNewsData(q,7,lang,region),
+    fetchGuardian(q,7),
+  ]);
+  const r2 = _mergeResults([
+    {name:'GNews',res:g7},{name:'Currents',res:c7},
+    {name:'NewsData',res:n7},{name:'Guardian',res:gd7},
+  ], q, r1.seenKeys);
+  const allArticles = [...r1.articles, ...r2.articles];
+  const allSources  = [...new Set([...r1.sources,...r2.sources])];
+  const allErrors   = [...r1.errors,...r2.errors];
+
+  return {articles:allArticles, source:(allSources.join('+')||'mixed')+(r2.articles.length?'(7d)':''), errors:allErrors};
+}
+
+/* ═══════════════════════════════════════════════
+   SOCIAL LINKS — accurate live search URLs
+═══════════════════════════════════════════════ */
+function buildSocial(q){ return {twitter:[],youtube:[],instagram:[],reddit:[]}; }
+
+
+
+/* ═══════════════════════════════════════════════
+   HASHTAG GENERATOR
+═══════════════════════════════════════════════ */
+function makeHashtags(q){
+  const words    = q.split(/\s+/).filter(w=>w.length>2);
+  const compound = q.replace(/\s+/g,'');
+  const cap      = s=>s.charAt(0).toUpperCase()+s.slice(1);
+  const base     = [compound,...words.map(cap)];
+  const xtra     = {
+    sensex:['BSESensex','Nifty50','IndianMarkets','NSEIndia'],
+    nifty: ['Nifty50','BSESensex','FIIInflows'],
+    rbi:   ['RBIPolicy','RepoRate','IndianEconomy','MPC'],
+    ipl:   ['IPL2026','Cricket','BCCI','T20'],
+    cricket:['TeamIndia','CricketIndia','BCCI'],
+    budget:['UnionBudget','IndianEconomy','Budget2026'],
+    realty:['RealEstate','IndianRealty','HousingIndia'],
+    bitcoin:['Crypto','BTC','CryptoIndia'],
+    modi:  ['PMIndia','BJP','IndianPolitics'],
+    inflation:['IndianEconomy','CPI'],
+    monsoon:['IMD','IndianMonsoon'],
+    pakistan:['IndPak','IndiaPakistan'],
+    england:['INDvsENG','CricketIndia'],
+    election:['IndianElections','VotingIndia'],
+    rupee:['IndianRupee','ForexIndia'],
+  };
+  let extra=[];
+  const ql=q.toLowerCase();
+  for(const k in xtra){ if(ql.includes(k)) extra=[...extra,...xtra[k]]; }
+  return [...new Set([...base,...extra])].slice(0,12);
+}
+
+/* ═══════════════════════════════════════════════
+   HASHTAG FARMING ENGINE
+   For each candidate hashtag generated from the
+   query, independently searches for articles that
+   mention it. Articles are cross-deduplicated:
+   ones appearing in many hashtag buckets are less
+   "unique" to any single tag. Each tag is then
+   scored on unique reach, source diversity, and
+   freshness. Results render progressively.
+═══════════════════════════════════════════════ */
+
+// Convert a CamelCase hashtag to a readable search term
+// e.g. "#RBIRateCut" → "RBI Rate Cut"
+function hashtagToSearch(tag){
+  return tag.replace('#','')
+    .replace(/([A-Z][a-z]+)/g,' $1')
+    .replace(/([A-Z]{2,})([A-Z][a-z])/g,'$1 $2')
+    .trim();
+}
+
+// noop setStep for background farming calls (no loading UI)
+const _noop = ()=>{};
+
+async function farmHashtags(q){
+  const wrap   = document.getElementById('htree-wrap');
+  const grid   = document.getElementById('htree-grid');
+  const status = document.getElementById('htree-status');
+  if(!wrap || !grid) return;
+
+  const candidates = makeHashtags(q).slice(0, 6); // max 6 to stay inside free API limits
+  if(!candidates.length) return;
+
+  wrap.style.display = 'block';
+  grid.innerHTML = `<div class="htree-loading"><div class="spinner"></div>Farming ${candidates.length} hashtags…</div>`;
+  if(status) status.textContent = '';
+
+  // tag → articles[]
+  const results   = new Map();
+  // url  → Set of tags that found it (cross-dedup map)
+  const urlTagMap = new Map();
+
+  for(let i = 0; i < candidates.length; i++){
+    const tag = candidates[i];
+    if(status) status.textContent = `${tag} (${i+1}/${candidates.length})`;
+    const term = hashtagToSearch(tag);
+    try{
+      const {articles} = await cascadeSearch(term, _noop, 'en');
+      results.set(tag, articles);
+      articles.forEach(a=>{
+        const set = urlTagMap.get(a.url) || new Set();
+        set.add(tag);
+        urlTagMap.set(a.url, set);
+      });
+    }catch(e){
+      results.set(tag, []);
+    }
+    // Re-render after every tag so user sees results arrive live
+    _renderHashtagTree(candidates.slice(0, i+1), results, urlTagMap, grid);
+  }
+
+  if(status) status.textContent = `${candidates.length} hashtags analysed`;
+}
+
+function _renderHashtagTree(candidates, results, urlTagMap, grid){
+  // Score each hashtag
+  const graded = candidates.map(tag=>{
+    const all     = results.get(tag) || [];
+    // "Unique" = article appears in ≤ 2 hashtag buckets (not a generic article hit by everyone)
+    const unique  = all.filter(a=>(urlTagMap.get(a.url)||new Set()).size <= 2);
+    const domains = new Set(unique.map(a=>a.domain));
+    const fresh   = unique.filter(a=>isFresh(a.pubDate,1)).length;
+    const score   = unique.length*10 + domains.size*15 + fresh*20;
+    return {tag, all, unique, totalCount:all.length, uniqueCount:unique.length,
+            sourceDiversity:domains.size, freshCount:fresh, score};
+  }).sort((a,b)=>b.score-a.score);
+
+  grid.innerHTML = graded.map((item,i)=>{
+    const tagId = item.tag.replace(/[^a-zA-Z0-9]/g,'');
+    const showSignal = item.uniqueCount >= 3;
+    return `
+    <div class="ht-card">
+      <div class="ht-header" onclick="toggleHtCard('${tagId}')">
+        <div class="ht-left">
+          <span class="ht-rank">${i+1}</span>
+          <span class="ht-tag">${esc(item.tag)}</span>
+          ${showSignal?'<span class="ht-signal">HIGH SIGNAL</span>':''}
+        </div>
+        <div class="ht-scores">
+          <span class="ht-bdg ht-bdg-score">${item.score}pts</span>
+          <span class="ht-bdg">${item.uniqueCount} unique</span>
+          <span class="ht-bdg">${item.sourceDiversity} src</span>
+          ${item.freshCount?`<span class="ht-bdg ht-bdg-fresh">${item.freshCount} fresh</span>`:''}
+          <i class="ti ti-chevron-down ht-chev" id="chev-${tagId}" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="ht-articles" id="hta-${tagId}">
+        ${item.all.slice(0,6).map(a=>`
+          <a class="ht-article" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">
+            <span class="ht-atitle">${esc((a.title||'').split(' - ')[0])}</span>
+            <span class="ht-ameta">${esc(a.domain)} &middot; ${ageBadge(a.pubDate).t}</span>
+          </a>`).join('')}
+        ${item.all.length > 6?`<div class="ht-more">+${item.all.length-6} more articles</div>`:''}
+        ${item.all.length === 0?'<div class="ht-empty">No articles found for this hashtag</div>':''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleHtCard(tagId){
+  const panel = document.getElementById(`hta-${tagId}`);
+  const chev  = document.getElementById(`chev-${tagId}`);
+  if(!panel) return;
+  const open = panel.classList.toggle('open');
+  if(chev) chev.style.transform = open ? 'rotate(180deg)' : '';
+}
+
+/* ═══════════════════════════════════════════════
+   TRENDING DATA
+   Priority order — highest data freshness, lowest
+   API cost first:
+   1. Our own Cloudflare Worker /api/news
+      (harvested every 15 min from Google News RSS,
+       no quota, no CORS issue)
+   2. Google Trends RSS via /api/trends Worker proxy
+      (Google RSS is CORS-blocked from the browser;
+       the proxy fetches it server-side and relays)
+   3. GNews top-headlines API
+      (quota: 100 req/day — last resort only)
+   4. Hardcoded fallback
+═══════════════════════════════════════════════ */
+const WORKER_BASE = 'https://thenewsdip-backend.thenewsdip.workers.dev';
+
+// Topics that are publication/brand names — not newsworthy trend pills
+const SKIP_TREND_TOPICS = new Set([
+  'times of india','ndtv','hindustan times','the hindu','indian express',
+  'economic times','livemint','live mint','business standard','moneycontrol',
+  'news18','zee news','india today','firstpost','scroll','the wire',
+  'the print','outlook india','wion','cnbc tv18','bloomberg','reuters',
+  'pti','ani','bbc','cnn','deccan herald','deccan chronicle',
+  'tribune india','dainik jagran','dainik bhaskar','navbharat times',
+  'mathrubhumi','manorama','mid day','midday','mumbai mirror',
+  'google','twitter','facebook','instagram','youtube','whatsapp',
+  'microsoft','amazon','apple','india','government',
+]);
+
+const TREND_FALLBACK = {
+  IN:['RBI rate cut','Sensex today','India budget 2026','IPL 2026 final',
+      'Monsoon forecast 2026','Nifty 50','UPI new rules','ISRO mission 2026',
+      'Modi foreign policy','India Pakistan'],
+  US:['Fed interest rate','US economy 2026','Trump tariffs','Apple WWDC 2026',
+      'NBA Finals 2026','Gaza ceasefire','AI regulation US','US jobs report'],
+  GB:['UK election 2026','Premier League','NHS reform','Bank of England rates',
+      'Keir Starmer','UK inflation 2026','Brexit update'],
+  CA:['Canada election 2026','Bank of Canada rates','Toronto housing market',
+      'NHL playoffs 2026','Liberal Party Canada','Canada inflation'],
+  AU:['RBA interest rates','Australian election 2026','AFL 2026',
+      'Sydney property market','Anthony Albanese','Australia inflation'],
+  DE:['ECB interest rates','Germany coalition 2026','Bundesliga 2026',
+      'EU economy 2026','Ukraine war update','European inflation'],
+  BR:['Brazil economy 2026','Copa America 2026','Lula government',
+      'Amazon deforestation','Brazil inflation','Brazilian real'],
+  RU:['Russia Ukraine war','Russian economy 2026','Russia sanctions',
+      'Putin foreign policy','Russia energy exports','Moscow news'],
+  SG:['Singapore economy 2026','Southeast Asia trade','ASEAN summit 2026',
+      'Singapore property','SGD exchange rate','Singapore elections'],
+};
+
+// Converts a CamelCase hashtag like "#RBIPolicy" to a readable topic "RBI Policy"
+function tagToTopic(tag){
+  return tag.replace('#','')
+    .replace(/([A-Z][a-z]+)/g,' $1')
+    .replace(/([A-Z]{2,})([A-Z][a-z])/g,'$1 $2')
+    .trim();
+}
+
+// Extracts meaningful multi-word topic phrases from harvested article titles.
+// Scores bigrams by frequency — repeated phrases across multiple articles are
+// real trending topics, not one-off mentions.
+function extractTopicsFromTree(tree){
+  const stop = new Set([
+    'the','and','for','with','over','from','that','this','have','will',
+    'says','said','amid','after','as','at','in','on','of','to','a','an',
+    'is','are','its','into','by','but','or','not','also','new','india',
+    'report','news','days','year','time','first','before','since','against',
+    'under','within','without','about','more','two','three','four','five',
+    'all','one','was','were','has','had','been','their','its','his','her',
+    'who','what','when','where','why','how','here','there','than','then',
+    'now','just','even','only','back','can','may','will','get','got','set',
+  ]);
+
+  const phraseScore = new Map();
+  const seenTitles  = new Set();
+
+  for(const entry of tree){
+    const boost = Math.log2((entry.score||1) + 1);
+    for(const art of (entry.articles||[]).slice(0,3)){
+      if(!art.title) continue;
+      // Strip source suffix: "Title - Source Name" or "Title | Source"
+      const clean = art.title.split(/ [-|–—] /)[0];
+      if(seenTitles.has(clean)) continue;
+      seenTitles.add(clean);
+
+      const words = clean
+        .replace(/[|–—:'"'()\[\]]/g,' ')
+        .split(/\s+/)
+        .map(w=>w.replace(/[^a-zA-Z0-9]/g,''))
+        .filter(w=>w.length>2 && !stop.has(w.toLowerCase()) && !/^\d{1,2}$/.test(w));
+
+      for(let i=0; i<words.length-1; i++){
+        const bigram = words[i]+' '+words[i+1];
+        const bl = bigram.toLowerCase();
+        if(!SKIP_TREND_TOPICS.has(bl) && bigram.length>5){
+          phraseScore.set(bigram, (phraseScore.get(bigram)||0)+boost);
+        }
+      }
+    }
+  }
+
+  return [...phraseScore.entries()]
+    .sort((a,b)=>b[1]-a[1])
+    .filter(([p])=>p.length>5)
+    .slice(0,14)
+    .map(([p])=>p);
+}
+
+async function fetchLiveTrends(region){
+  // ── Strategy 1: own harvested data — India only (harvester scrapes IN news) ─
+  if(region === 'IN'){
+    try{
+      const r = await fetch(`${WORKER_BASE}/api/news`, {signal:AbortSignal.timeout(5000)});
+      if(r.ok){
+        const d = await r.json();
+        const tree = d.tree || [];
+        if(tree.length >= 5){
+          const topics = extractTopicsFromTree(tree);
+          if(topics.length >= 5) return {topics, source:'live feed'};
+        }
+      }
+    }catch(e){ console.warn('Worker news:', e.message); }
+  }
+
+  // ── Strategy 2: Google Trends RSS via Worker proxy ────────────────────────
+  // Pass region directly — it's already a valid Google Trends geo code.
+  try{
+    const r = await fetch(`${WORKER_BASE}/api/trends?geo=${region}&hl=en`,
+                          {signal:AbortSignal.timeout(6000)});
+    if(r.ok){
+      const xml = await r.text();
+      const matches = [...xml.matchAll(/<title><!\[CDATA\[(.*?)\]\]><\/title>/g)];
+      const topics = matches.slice(1).map(m=>m[1])
+        .filter(t=>t.length>2&&t.length<60&&!SKIP_TREND_TOPICS.has(t.toLowerCase()));
+      if(topics.length >= 5) return {topics, source:'Google Trends'};
+    }
+  }catch(e){ console.warn('Trends proxy:', e.message); }
+
+  // ── Strategy 3: GNews top-headlines (quota-limited — last resort) ─────────
+  const gNewsMap = {IN:'in',US:'us',GB:'gb',CA:'ca',AU:'au',DE:'de',BR:'br',RU:'ru',SG:'sg'};
+  const country = gNewsMap[region] || 'us';
+  try{
+    const url = `https://gnews.io/api/v4/top-headlines?country=${country}&lang=en&max=10&apikey=${KEYS.gnews}`;
+    const r = await fetch(url, {signal:AbortSignal.timeout(6000)});
+    if(r.ok){
+      const d = await r.json();
+      const arts = d.articles||[];
+      if(arts.length >= 5){
+        const stop = new Set(['the','and','for','with','over','from','that','this','have','will',
+                              'says','amid','after','as','at','in','on','of','to','a','an','is',
+                              'are','its','into','by','but','or','not','also','new']);
+        const topics = arts.map(a=>{
+          const words = a.title.replace(/[|–—:'"]/g,' ').split(/\s+/)
+            .filter(w=>w.length>2&&!stop.has(w.toLowerCase())).slice(0,4);
+          return words.join(' ');
+        }).filter(t=>t.length>4);
+        if(topics.length >= 5) return {topics, source:'GNews'};
+      }
+    }
+  }catch(e){ console.warn('GNews trends:', e.message); }
+
+  return {topics: TREND_FALLBACK[region]||TREND_FALLBACK.IN, source:'curated'};
+}
+
+function detectRegion(){
+  try{
+    const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
+    if(/Kolkata|Calcutta/.test(tz)) return 'IN';
+    if(/London/.test(tz))           return 'GB';
+    if(/^America\//.test(tz))       return 'US';
+    const l=navigator.language||'';
+    if(l==='en-IN'||/^(hi|ta|te|mr|bn|gu|pa)/.test(l)) return 'IN';
+    if(l==='en-GB') return 'GB';
+  }catch(e){}
+  return 'IN';
+}
+
+let currentRegion = 'IN'; // overridden by localStorage in init
+
+function setRegion(geo, el){
+  document.querySelectorAll('.rpill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  currentRegion = geo;
+  localStorage.setItem('tnd-region', geo);
+  renderTrends();
+}
+
+async function renderTrends(){
+  const region = currentRegion;
+  const labels = {
+    IN:'India', US:'United States', GB:'UK', CA:'Canada', AU:'Australia',
+    DE:'Europe', BR:'S. America', RU:'Russia', SG:'SE Asia',
+  };
+  const g=document.getElementById('tgrid');
+  g.innerHTML='<div style="font-size:11px;color:var(--tx3);padding:6px 0">Loading live trends...</div>';
+
+  const{topics,source}=await fetchLiveTrends(region);
+
+  g.innerHTML='';
+  topics.slice(0,10).forEach((topic,i)=>{
+    const el=document.createElement('div');
+    el.className='tpill';
+    el.innerHTML=`<span class="num">${i+1}</span>${esc(topic)}`;
+    el.onclick=()=>doSearch(topic);
+    g.appendChild(el);
+  });
+
+  const lbl=document.getElementById('trend-src');
+  if(lbl) lbl.textContent=`· via ${source}`;
+
+  // Update the "Try …" hint under the search bar with live topics
+  const hint=document.getElementById('hhint');
+  if(hint && topics.length>=4){
+    hint.innerHTML='Try '+topics.slice(0,4).map(
+      t=>`<a onclick="doSearch('${esc(t)}')">${esc(t)}</a>`
+    ).join(', ');
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   HOMEPAGE FEED
+═══════════════════════════════════════════════ */
+let _feedData   = null;
+let _feedCat    = 'all';
+let _feedPage   = 0;
+const FEED_PAGE = 12;
+
+const CAT_LABELS = {
+  india:'India', world:'World', business:'Business',
+  sports:'Sports', tech:'Tech', entertainment:'Entertainment',
+};
+
+async function loadHomeFeed(){
+  try{
+    const r = await fetch(`${WORKER_BASE}/api/feed`, {signal: AbortSignal.timeout(8000)});
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    _feedData = await r.json();
+
+    // Breaking ticker
+    if(_feedData.breaking && _feedData.breaking.length > 0){
+      _buildTicker(_feedData.breaking);
+    }
+
+    // Updated timestamp
+    const upd = document.getElementById('feed-updated');
+    if(upd && _feedData.last_updated){
+      const d = new Date(_feedData.last_updated);
+      upd.textContent = `Updated ${d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}`;
+    }
+
+    renderFeed();
+  }catch(e){
+    const grid = document.getElementById('feed-grid');
+    if(grid) grid.innerHTML = `<div class="feed-empty" style="grid-column:1/-1">
+      Could not load feed right now.
+      <br><a onclick="loadHomeFeed()" style="color:var(--lk);cursor:pointer;font-size:12px;margin-top:6px;display:inline-block">↺ Retry</a>
+    </div>`;
+    console.warn('Feed load error:', e.message);
+  }
+}
+
+function _buildTicker(articles){
+  const wrap  = document.getElementById('ticker-wrap');
+  const track = document.getElementById('ticker-track');
+  if(!wrap || !track || !articles.length) return;
+  // Build HTML — duplicate for seamless infinite scroll
+  const items = articles.map(a=>{
+    const q = a.title.split(' ').slice(0,5).join(' ');
+    return `<span class="ticker-item" onclick="doSearch(${JSON.stringify(q)})">${esc(a.title)}</span><span class="ticker-sep">•</span>`;
+  }).join('');
+  track.innerHTML = items + items; // duplicate for loop
+  wrap.dataset.hasContent = '1';
+  wrap.style.display = 'block';
+}
+
+function setFeedCat(cat, el){
+  _feedCat  = cat;
+  _feedPage = 0;
+  document.querySelectorAll('.fcat').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderFeed();
+}
+
+function _getFeedArticles(){
+  if(!_feedData) return [];
+  const all = _feedData.articles || [];
+  return _feedCat === 'all' ? all : all.filter(a => a.category === _feedCat);
+}
+
+function renderFeed(){
+  if(!_feedData) return;
+  const articles = _getFeedArticles();
+  const grid = document.getElementById('feed-grid');
+  const lmBtn = document.getElementById('feed-load-more');
+  if(!grid) return;
+
+  if(articles.length === 0){
+    grid.innerHTML = `<div class="feed-empty" style="grid-column:1/-1">No ${CAT_LABELS[_feedCat]||''} stories yet — check back soon.</div>`;
+    if(lmBtn) lmBtn.style.display = 'none';
+    return;
+  }
+
+  const page = articles.slice(0, (_feedPage + 1) * FEED_PAGE);
+  grid.innerHTML = page.map(a => _feedCard(a)).join('');
+  if(lmBtn) lmBtn.style.display = articles.length > page.length ? 'block' : 'none';
+
+  // Translate feed cards into the current language
+  translateVisibleTitles(currentLang);
+}
+
+function loadMoreFeed(){
+  _feedPage++;
+  renderFeed();
+  // Smooth-scroll to where new cards start
+  const grid = document.getElementById('feed-grid');
+  if(grid){
+    const existingCards = grid.querySelectorAll('.fcard').length - FEED_PAGE;
+    const targetCard = grid.querySelectorAll('.fcard')[existingCards];
+    if(targetCard) targetCard.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function _feedCard(a){
+  const age = a.age_hours == null ? '' :
+    a.age_hours < 1   ? 'Just now' :
+    a.age_hours < 24  ? `${Math.round(a.age_hours)}h ago` :
+                        `${Math.round(a.age_hours/24)}d ago`;
+  const catLabel = CAT_LABELS[a.category] || 'News';
+  const imgHtml  = a.image
+    ? `<img class="fcard-img" src="${esc(a.image)}" alt="" loading="lazy"
+           onerror="this.parentNode.innerHTML='<div class=fcard-nimg><i class=\\"ti ti-photo-off\\" aria-hidden=\\"true\\"></i></div>'">`
+    : `<div class="fcard-nimg"><i class="ti ti-photo-off" aria-hidden="true"></i></div>`;
+
+  return `<a class="fcard" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">
+    <div class="fcard-img-wrap">${imgHtml}</div>
+    <div class="fcard-body">
+      <div class="fcard-cat">${esc(catLabel)}</div>
+      <div class="fcard-title ctitle" data-en="${esc(a.title)}">${esc(a.title)}</div>
+      ${a.desc ? `<div class="fcard-desc csnip" data-en="${esc(a.desc)}">${esc(a.desc)}</div>` : ''}
+      <div class="fcard-meta">
+        <span class="fcard-src">${esc(a.source || a.domain)}</span>
+        <span class="fcard-age">${esc(age)}</span>
+      </div>
+    </div>
+  </a>`;
+}
+
+/* ═══════════════════════════════════════════════
+   RENDER ENGINE
+═══════════════════════════════════════════════ */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function articleCard(art){
+  const cls  = classify(art.domain);
+  const badge= BADGE[cls.r]||BADGE.nat;
+  const age  = ageBadge(art.pubDate);
+  const name = art.sourceName||cls.n||art.domain;
+  const imgH = art.image
+    ? `<img class="card-img" src="${esc(art.image)}" alt="" loading="lazy"
+         onerror="this.outerHTML='<div class=card-nimg><i class=ti style=font-size:22px></i></div>'">`
+    : `<div class="card-nimg"><i class="ti ti-news" aria-hidden="true"></i></div>`;
+  return `<div class="card" onclick="window.open('${esc(art.url)}','_blank','noopener')">
+    ${imgH}
+    <div class="card-body">
+      <span class="bdg ${badge.cls}">${esc(badge.label)} &middot; ${esc(name)}</span>
+      <a class="ctitle" href="${esc(art.url)}" target="_blank" rel="noopener noreferrer"
+         onclick="event.stopPropagation()" data-en="${esc(art.title)}">
+        ${esc(art.title)} <i class="ti ti-external-link" aria-hidden="true"></i>
+      </a>
+      ${art.desc?`<p class="csnip" data-en="${esc(art.desc)}">${esc(art.desc)}</p>`:''}
+      <div class="cmeta">
+        <span class="abadge ${age.c}">
+          <i class="ti ti-clock" aria-hidden="true"></i>${age.t}
+        </span>
+        <span><i class="ti ti-world" aria-hidden="true"></i>${esc(art.domain)}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+
+let curFilter = 'all';
+let curResult = null;
+let curQ      = '';
+
+function renderPage(result){
+  curResult = result;
+  const {articles, q, source, errors} = result;
+
+  const isIntl = currentRegion !== 'IN';
+  const regionLabels = {
+    IN:'India', US:'United States', GB:'UK', CA:'Canada',
+    AU:'Australia', DE:'Europe', BR:'S. America', RU:'Russia', SG:'SE Asia',
+  };
+  const regionLabel = regionLabels[currentRegion] || 'International';
+
+  // For India: bucket into National / Regional / Local.
+  // For international regions: put everything in one "Coverage" section — Indian
+  // source classification is meaningless for BBC, Reuters, DW, CBC, etc.
+  const nat=[], reg=[], loc=[];
+  articles.forEach(a=>{
+    const cls = isIntl ? {n:a.sourceName||a.domain,r:'nat'} : classify(a.domain);
+    a._badge = BADGE[cls.r]||BADGE.nat;
+    a._cls   = cls;
+    if(!isIntl && cls.r==='reg') reg.push(a);
+    else if(!isIntl && cls.r==='loc') loc.push(a);
+    else nat.push(a);
+  });
+
+  const today  = new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+  const total  = articles.length;
+
+  // For international, collapse to a single section
+  const sets = isIntl
+    ? [{key:'national', lbl:`${regionLabel} coverage`, items:nat}]
+    : [
+        {key:'national', lbl:'National coverage',  items:nat},
+        {key:'regional', lbl:'Regional coverage',  items:reg},
+        {key:'local',    lbl:'Local coverage',      items:loc},
+      ];
+
+  const filtered = (curFilter==='all' || isIntl)
+    ? sets
+    : [sets.find(s=>s.key===curFilter)||{key:curFilter,lbl:curFilter,items:[]}];
+
+  // Region-appropriate fallback links for the empty state
+  const qe = encodeURIComponent(q);
+  const emptyLinks = {
+    IN: `<a href="https://economictimes.indiatimes.com/searchresult.cms?query=${qe}" target="_blank" rel="noopener">Economic Times</a>
+         <a href="https://www.ndtv.com/search?searchtext=${qe}" target="_blank" rel="noopener">NDTV</a>`,
+    US: `<a href="https://www.reuters.com/search/news?blob=${qe}" target="_blank" rel="noopener">Reuters</a>
+         <a href="https://apnews.com/search?q=${qe}" target="_blank" rel="noopener">AP News</a>`,
+    GB: `<a href="https://www.bbc.com/search?q=${qe}" target="_blank" rel="noopener">BBC</a>
+         <a href="https://www.theguardian.com/search?q=${qe}" target="_blank" rel="noopener">The Guardian</a>`,
+    CA: `<a href="https://www.cbc.ca/search?q=${qe}" target="_blank" rel="noopener">CBC</a>
+         <a href="https://globalnews.ca/?s=${qe}" target="_blank" rel="noopener">Global News</a>`,
+    AU: `<a href="https://www.abc.net.au/search/?query=${qe}" target="_blank" rel="noopener">ABC Australia</a>
+         <a href="https://www.smh.com.au/search-results?query=${qe}" target="_blank" rel="noopener">Sydney Morning Herald</a>`,
+    DE: `<a href="https://www.dw.com/search/?languageCode=en&item=${qe}" target="_blank" rel="noopener">Deutsche Welle</a>
+         <a href="https://www.reuters.com/search/news?blob=${qe}" target="_blank" rel="noopener">Reuters</a>`,
+    BR: `<a href="https://apnews.com/search?q=${qe}" target="_blank" rel="noopener">AP News</a>
+         <a href="https://www.reuters.com/search/news?blob=${qe}" target="_blank" rel="noopener">Reuters</a>`,
+    RU: `<a href="https://www.reuters.com/search/news?blob=${qe}" target="_blank" rel="noopener">Reuters</a>
+         <a href="https://apnews.com/search?q=${qe}" target="_blank" rel="noopener">AP News</a>`,
+    SG: `<a href="https://www.channelnewsasia.com/search?q=${qe}" target="_blank" rel="noopener">CNA</a>
+         <a href="https://www.straitstimes.com/search?searchkey=${qe}" target="_blank" rel="noopener">Straits Times</a>`,
+  };
+  const fallbackLinks = `<a href="https://news.google.com/search?q=${qe}&hl=en" target="_blank" rel="noopener">Google News</a>
+    ${emptyLinks[currentRegion]||emptyLinks.US}`;
+
+  const content=document.getElementById('rcontent');
+  content.innerHTML=`
+    <div class="rmeta">
+      <span>Results for <strong>${esc(q)}</strong> &nbsp;&middot;&nbsp; ${today}</span>
+      ${total>0
+        ?`<span class="srcbadge sb-live">
+            <i class="ti ti-bolt" aria-hidden="true"></i>
+            ${total} live articles via ${esc(source)}
+          </span>`
+        :`<span class="srcbadge sb-err">
+            <i class="ti ti-alert-circle" aria-hidden="true"></i>
+            No results found
+          </span>`
+      }
+    </div>
+
+    ${!isIntl ? `<div class="filters" role="tablist">
+      ${['all','national','regional','local'].map(f=>`
+        <button class="fb${curFilter===f?' on':''}" onclick="setFilter('${f}',this)">
+          ${f.charAt(0).toUpperCase()+f.slice(1)}
+          ${f==='national'?` (${nat.length})`:f==='regional'?` (${reg.length})`:f==='local'?` (${loc.length})`:''}
+        </button>`).join('')}
+    </div>` : ''}
+
+    ${filtered.map((set,si)=>`
+      <h2 class="slbl">${esc(set.lbl)}</h2>
+      ${(set.items&&set.items.length
+            ? set.items.map(a=>articleCard(a)).join('')
+            : total===0
+              ? `<div class="emptybox">
+                   <p>No articles found for <strong>"${esc(q)}"</strong> right now.</p>
+                   <p>Try these direct searches:</p>
+                   ${fallbackLinks}
+                 </div>`
+              : `<p class="nosrc">No ${esc(set.lbl.toLowerCase())} articles for this search.</p>`)
+      }
+      ${si===1&&!isIntl?`<div class="adslot">Advertisement — Google AdSense (activate after approval)</div>`:''}
+    `).join('')}
+  `;
+  content.style.display = 'block';
+  content.classList.remove('hidden');
+  // Scroll to top so results appear cleanly, not below where loader was
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function setFilter(f,btn){
+  curFilter=f;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  if(curResult){
+    renderPage(curResult);
+    if(currentLang !== 'en') translateVisibleTitles(currentLang);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   MAIN SEARCH
+═══════════════════════════════════════════════ */
+const LOADMSGS=[
+  'Searching for today\'s articles...',
+  'Scanning news databases...',
+  'Filtering to recent only...',
+  'Classifying by source...',
+  'Building your news tree...',
+];
+
+async function doSearch(q){
+  q=(q||'').trim();
+  if(!q) return;
+  curQ=q; curFilter='all';
+
+  if(history.pushState) history.pushState({q},'',`?q=${encodeURIComponent(q)}`);
+  document.title=`${q} — Today's News | TheNewsDip`;
+  document.getElementById('tq').value=q;
+  document.getElementById('hq').value=q;
+
+  showResults();
+
+  const loader  = document.getElementById('rloader');
+  const content = document.getElementById('rcontent');
+  loader.style.display = 'flex';
+  loader.classList.remove('hidden');
+  content.style.display = 'none';
+  content.classList.add('hidden');
+
+  let mi=0;
+  const iv=setInterval(()=>{
+    const el=document.getElementById('ltxt');
+    if(el) el.textContent=LOADMSGS[mi++%LOADMSGS.length];
+  },700);
+
+  const setStep=msg=>{
+    const el=document.getElementById('lstep');
+    if(el) el.textContent=msg;
+  };
+
+  // Reset hashtag panel for new search
+  const htWrap = document.getElementById('htree-wrap');
+  if(htWrap){ htWrap.style.display='none'; document.getElementById('htree-grid').innerHTML=''; }
+
+  try{
+    const {articles, source, errors} = await cascadeSearch(q, setStep, 'en', currentRegion);
+    clearInterval(iv);
+    loader.style.display = 'none';
+    loader.classList.add('hidden');
+    renderPage({q, articles, source, errors});
+    if(currentLang !== 'en') translateVisibleTitles(currentLang);
+    // Start hashtag farming asynchronously after main results are shown
+    farmHashtags(q);
+  }catch(err){
+    clearInterval(iv);
+    console.error('Fatal search error:', err);
+    loader.style.display = 'none';
+    loader.classList.add('hidden');
+    renderPage({q, articles:[], source:'', errors:[err.message]});
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   PAGE ROUTING
+═══════════════════════════════════════════════ */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  // Topbar: show ONLY on results page, hide everywhere else
+  const tb = document.getElementById('topbar');
+  if(id === 'pg-results'){
+    tb.style.display = 'flex';
+    tb.classList.remove('hidden');
+  } else {
+    tb.style.display = 'none';
+    tb.classList.add('hidden');
+  }
+
+  // Breaking ticker: show only on home page (it lives outside the page divs)
+  const ticker = document.getElementById('ticker-wrap');
+  if(ticker){
+    ticker.style.display = (id === 'pg-home' && ticker.dataset.hasContent === '1') ? 'block' : 'none';
+  }
+
+  // Loader: always reset when entering results page
+  if(id === 'pg-results'){
+    const loader = document.getElementById('rloader');
+    loader.style.display = 'none';
+    loader.classList.add('hidden');
+  }
+
+  window.scrollTo(0,0);
+}
+function showHome(){
+  showPage('pg-home');
+  document.title='TheNewsDip — Dive Deep Into Every Trending Story';
+  if(history.pushState) history.pushState({},'',window.location.pathname);
+}
+function showResults(){ showPage('pg-results'); }
+
+/* ═══════════════════════════════════════════════
+   THEME — two independent toggles
+   Light/Dark button + separate E-ink button
+═══════════════════════════════════════════════ */
+let isDark = false;
+let isEink = false;
+
+function applyThemeState(){
+  document.body.classList.remove('dark','eink');
+  if(isEink){
+    document.body.classList.add('eink');
+  } else if(isDark){
+    document.body.classList.add('dark');
+  }
+  // Light/Dark button label + icon
+  ['dmi','dmi2'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.className=isDark?'ti ti-sun':'ti ti-moon';
+  });
+  ['dml','dml2'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.textContent=isDark?'Light':'Dark';
+  });
+  // E-ink button — highlight when active
+  ['eink-btn'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){
+      el.style.borderColor = isEink ? 'var(--ac)' : '';
+      el.style.color       = isEink ? 'var(--ac)' : '';
+    }
+  });
+  ['einkl','einkl2'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.textContent = isEink ? 'E-ink ✓' : 'E-ink';
+  });
+  localStorage.setItem('tnd-dark', isDark?'1':'0');
+  localStorage.setItem('tnd-eink', isEink?'1':'0');
+}
+
+function toggleLightDark(){
+  if(isEink){ isEink=false; } // exit e-ink first if active
+  isDark = !isDark;
+  applyThemeState();
+}
+
+function toggleEink(){
+  isEink = !isEink;
+  if(isEink) isDark = false; // e-ink overrides dark
+  applyThemeState();
+}
+
+// Legacy aliases
+function toggleDark(){ toggleLightDark(); }
+function cycleTheme(){ toggleLightDark(); }
+function applyTheme(t){
+  isDark = t===1; isEink = t===2;
+  applyThemeState();
+}
+
+/* ═══════════════════════════════════════════════
+   KEYBOARD + BACK
+═══════════════════════════════════════════════ */
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter') return;
+  const a=document.activeElement;
+  if(a.id==='hq'||a.id==='tq') doSearch(a.value);
+});
+window.addEventListener('popstate',()=>{
+  const q=new URLSearchParams(window.location.search).get('q');
+  if(q) doSearch(q); else showHome();
+});
+
+/* ═══════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════ */
+(function(){
+  isDark = localStorage.getItem('tnd-dark')==='1';
+  isEink = localStorage.getItem('tnd-eink')==='1';
+  if(isDark||isEink) applyThemeState();
+  // Restore saved language and apply UI strings
+  const savedLang = localStorage.getItem('tnd-lang') || 'en';
+  if(savedLang !== 'en'){
+    currentLang = savedLang;
+    document.querySelectorAll('.lang-pill').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll(`[data-lang="${savedLang}"]`).forEach(p=>p.classList.add('active'));
+  }
+  applyLang();
+  // Restore saved region selection and mark the active pill
+  const savedRegion = localStorage.getItem('tnd-region');
+  if(savedRegion){
+    currentRegion = savedRegion;
+    document.querySelectorAll('.rpill').forEach(p=>p.classList.remove('active'));
+    const rEl = document.querySelector(`.rpill[data-geo="${savedRegion}"]`);
+    if(rEl) rEl.classList.add('active');
+  }
+  renderTrends();
+  loadHomeFeed();   // populate homepage feed on load
+  const q=new URLSearchParams(window.location.search).get('q');
+  if(q) doSearch(q);
+})();
+</script>
+</body>
+</html>
