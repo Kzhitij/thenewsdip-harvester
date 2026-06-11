@@ -11,96 +11,194 @@ import hashlib
 import re
 from bs4 import BeautifulSoup
 
-# Load lightweight NLP model for Entity Extraction
 nlp = spacy.load("en_core_web_sm")
 
-def resolve_target_url(google_rss_url):
-    """Unfurls the Google tracking link to get the final publisher destination."""
-    try:
-        response = requests.get(google_rss_url, timeout=5, headers={'User-Agent': 'Mozilla/5.0'})
-        return response.url
-    except Exception:
-        return google_rss_url
+RSS_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (compatible; TheNewsDip-Harvester/2.0; +https://www.thenewsdip.com/about)"
+}
 
-def extract_thumbnail_from_rss(description_html):
-    """Scavenges for the hidden thumbnail image inside the RSS description."""
-    if not description_html: return ""
-    try:
-        soup = BeautifulSoup(description_html, 'html.parser')
-        img = soup.find('img')
-        return img['src'] if img and img.get('src') else ""
-    except:
-        return ""
+# Primary Google News feeds + fallback direct RSS feeds
+FEEDS = [
+    "https://news.google.com/rss/search?q=India+latest+news&hl=en-IN&gl=IN&ceid=IN:en",
+    "https://news.google.com/rss/search?q=India+economy+politics&hl=en-IN&gl=IN&ceid=IN:en",
+    "https://news.google.com/rss/sections/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0ZqcEJVaTloV0Vnd09BTVM_hl=en-IN&gl=IN&ceid=IN:en",
+    # Reliable direct RSS fallbacks
+    "https://feeds.feedburner.com/ndtvnews-top-stories",
+    "https://www.thehindu.com/news/national/feeder/default.rss",
+    "https://indianexpress.com/feed/",
+    "https://www.livemint.com/rss/news",
+    "https://timesofindia.indiatimes.com/rssfeedstopstories.cms",
+]
 
-def farm_intelligence_tree(query):
-    print(f"[*] Harvesting Intelligence for: {query}")
-    rss_url = f"https://news.google.com/rss/search?q={requests.utils.quote(query)}&hl=en-IN&gl=IN&ceid=IN:en"
-    
-    try:
-        response = requests.get(rss_url, timeout=10)
-        root = ET.fromstring(response.content)
-        items = root.findall('.//item')
-        
-        unique_articles = {}
-        hashtag_pool = set()
-        
-        for item in items[:12]:
-            title = item.find('title').text if item.find('title') is not None else ""
-            link = item.find('link').text if item.find('link') is not None else ""
-            desc = item.find('description').text if item.find('description') is not None else ""
-            
-            source_tag = item.find('source')
-            source_name = source_tag.text if source_tag is not None else "Web"
-            
-            article_hash = hashlib.md5(title.encode('utf-8')).hexdigest()
-            
-            if article_hash not in unique_articles:
-                # Resolve final URL and extract thumbnail
-                clean_url = resolve_target_url(link)
-                img_url = extract_thumbnail_from_rss(desc)
-                
-                # Dynamic Hashtag Generation
-                words = re.findall(r'\b[A-Z][a-zA-Z]+\b', title)
-                for w in words:
-                    if len(w) > 3 and w.upper() not in ["NEWS", "INDIA", "TIMES", "LATEST"]:
-                        hashtag_pool.add(f"#{w.upper()}")
-                
-                unique_articles[article_hash] = {
-                    "title": title,
-                    "url": clean_url,
-                    "source": source_name,
-                    "image": img_url # Populating this is critical for the new frontend!
-                }
 
-        return {
-            "topic": query,
-            "diversity_score": min(len(unique_articles) * 7, 100),
-            "unique_links_count": len(unique_articles),
-            "hashtags": list(hashtag_pool)[:8],
-            "links": list(unique_articles.values())
-        }
+def clean_url(url):
+    parsed = urllib.parse.urlparse(url)
+    clean_params = {k: v for k, v in urllib.parse.parse_qs(parsed.query).items()
+                    if not k.startswith("utm_")}
+    new_query = urllib.parse.urlencode(clean_params, doseq=True)
+    return urllib.parse.urlunparse(
+        (parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, parsed.fragment)
+    )
 
-    except Exception as e:
-        print(f"[-] Harvester error: {e}")
-        return None
 
-def push_tree_to_live_worker(payload):
+def parse_pub_date(date_str):
+    if not date_str:
+        return datetime.now(timezone.utc)
+    for fmt in ("%a, %d %b %Y %H:%M:%S %Z", "%a, %d %b %Y %H:%M:%S %z",
+                "%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%dT%H:%M:%S%z"):
+        try:
+            dt = datetime.strptime(date_str.strip(), fmt)
+            return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+        except (ValueError, TypeError):
+            continue
+    return datetime.now(timezone.utc)
+
+
+def harvest_and_process():
+    raw_articles = []
+    seen_urls = set()
+    now = datetime.now(timezone.utc)
+    cutoff_time = now - timedelta(hours=24)
+    feeds_ok = 0
+
+    for feed_url in FEEDS:
+        try:
+            resp = requests.get(feed_url, headers=RSS_HEADERS, timeout=14)
+            if resp.status_code != 200:
+                print(f"  SKIP {feed_url[:60]}: HTTP {resp.status_code}")
+                continue
+
+            root = ET.fromstring(resp.content)
+            items = root.findall(".//item")
+            added = 0
+
+            for item in items:
+                title_el = item.find("title")
+                link_el  = item.find("link")
+                pub_el   = item.find("pubDate")
+
+                title      = (title_el.text or "").strip() if title_el is not None else ""
+                link       = (link_el.text  or "").strip() if link_el  is not None else ""
+                pub_str    = (pub_el.text   or "").strip() if pub_el   is not None else ""
+
+                if not title or not link:
+                    continue
+
+                clean_link = clean_url(link)
+                domain     = urllib.parse.urlparse(clean_link).netloc.replace("www.", "")
+                pub_date   = parse_pub_date(pub_str)
+
+                if pub_date >= cutoff_time and clean_link not in seen_urls:
+                    seen_urls.add(clean_link)
+                    raw_articles.append({
+                        "title":     title,
+                        "link":      clean_link,
+                        "domain":    domain,
+                        "age_hours": round((now - pub_date).total_seconds() / 3600, 2),
+                    })
+                    added += 1
+
+            feeds_ok += 1
+            print(f"  OK  {feed_url[:60]}: {len(items)} items → {added} fresh")
+
+        except ET.ParseError as e:
+            print(f"  ERR {feed_url[:60]}: XML parse — {e}")
+        except requests.RequestException as e:
+            print(f"  ERR {feed_url[:60]}: Network — {e}")
+        except Exception as e:
+            print(f"  ERR {feed_url[:60]}: {e}")
+
+    print(f"\nHarvested {len(raw_articles)} fresh articles from {feeds_ok}/{len(FEEDS)} feeds")
+
+    # Entity extraction → hashtag mapping
+    hashtag_map = defaultdict(list)
+    for article in raw_articles:
+        doc = nlp(article["title"])
+        valid_entities = set()
+        for ent in doc.ents:
+            if ent.label_ in ("PERSON", "ORG", "GPE", "EVENT", "PRODUCT", "NORP"):
+                tag = "#" + "".join(c for c in ent.text.title() if c.isalnum())
+                if len(tag) > 3:
+                    valid_entities.add(tag)
+        for tag in valid_entities:
+            hashtag_map[tag].append(article)
+
+    # Grade and score each hashtag cluster
+    graded_tree = []
+    for tag, articles in hashtag_map.items():
+        unique_domains  = {a["domain"] for a in articles}
+        total_links     = len(articles)
+        src_diversity   = len(unique_domains)
+        avg_age         = sum(a["age_hours"] for a in articles) / total_links
+        velocity        = sum(1 for a in articles if a["age_hours"] <= 3)
+        final_score     = int(total_links * 10 + src_diversity * 15 + velocity * 20 - avg_age * 2)
+
+        graded_tree.append({
+            "hashtag":         tag,
+            "score":           max(final_score, 1),
+            "link_count":      total_links,
+            "source_diversity": src_diversity,
+            "articles":        articles[:10],
+        })
+
+    graded_tree.sort(key=lambda x: x["score"], reverse=True)
+    print(f"Generated {len(graded_tree)} hashtag clusters (top 25 will be published)")
+    return graded_tree
+
+
+def publish_outputs(tree_data):
+    payload = {
+        "last_updated": datetime.now(timezone.utc).isoformat(),
+        "tree": tree_data,
+    }
+    with open("news_tree.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+    print("✓ news_tree.json written")
+    return json.dumps(payload)
+
+
+def push_tree_to_live_worker(json_payload):
     worker_url = "https://thenewsdip-backend.thenewsdip.workers.dev/api/update"
-    secret = os.environ.get("API_SECRET_KEY", "MySuperSecretDipEngineToken123!")
-    
-    print(f"[*] Pushing data to Cloudflare...")
+    secret_key = os.environ.get("API_SECRET_KEY")
+
+    if not secret_key:
+        print("✗ API_SECRET_KEY not set — Cloudflare sync skipped")
+        return False
+
+    headers = {
+        "Authorization": f"Bearer {secret_key}",
+        "Content-Type":  "application/json",
+        "User-Agent":    "TheNewsDip-Harvester/2.0",
+    }
+
+    print(f"Pushing to Cloudflare Worker ({worker_url})...")
     try:
-        requests.put(worker_url, headers={"Authorization": f"Bearer {secret}"}, json=payload, timeout=15)
-        print("✓ Platform synchronized.")
-    except Exception as e:
-        print(f"✗ Sync failed: {e}")
+        resp = requests.put(worker_url, headers=headers, data=json_payload, timeout=20)
+        if resp.status_code == 200:
+            print("✓ Cloudflare Worker updated successfully")
+            return True
+        print(f"✗ Worker update failed: HTTP {resp.status_code} — {resp.text[:300]}")
+        return False
+    except requests.Timeout:
+        print("✗ Worker update timed out after 20s")
+        return False
+    except requests.RequestException as e:
+        print(f"✗ Worker update network error: {e}")
+        return False
+
 
 if __name__ == "__main__":
-    # Updated: Now harvesting live trending topics automatically
-    from __main__ import get_live_trends # Reuse the trends function we defined earlier
-    
-    targets = get_live_trends() # This grabs REAL trends from Google
-    final_payload = [farm_intelligence_tree(t) for t in targets if farm_intelligence_tree(t)]
-    
-    if final_payload:
-        push_tree_to_live_worker(final_payload)
+    print("=" * 55)
+    print("TheNewsDip Harvester v2.0 — starting run")
+    print("=" * 55)
+
+    data_tree = harvest_and_process()
+
+    if data_tree:
+        json_payload = publish_outputs(data_tree)
+        pushed = push_tree_to_live_worker(json_payload)
+        status = "synced to Cloudflare ✓" if pushed else "Cloudflare sync skipped"
+        print(f"\n✓ Run complete: {len(data_tree)} trends, {status}")
+    else:
+        print("\n⚠ No articles harvested — RSS feeds may be blocked or empty")
+        print("  Cloudflare Worker NOT updated this run")
